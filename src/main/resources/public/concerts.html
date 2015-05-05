@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app ng-controller="Concerts">
+<head>
+    <title>SpringJam Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="concerts.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="jumbotron">
+        This is an app which allows you to manage your jamband bucket list.
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"><strong>Band</strong></div>
+        <div class="col-md-2"><strong>Date</strong></div>
+        <div class="col-md-4"><strong>Venue</strong></div>
+    </div>
+
+    <div ng-repeat="concert in concerts">
+        <div class="row">
+            <div class="col-md-2">{{concert.band.name}}</div>
+            <div class="col-md-2">{{concert.date | date:'yyyy-MM-dd'}}</div>
+            <div class="col-md-4">{{concert.venue.name}} ({{concert.venue.city}}, {{concert.venue.state}})</div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

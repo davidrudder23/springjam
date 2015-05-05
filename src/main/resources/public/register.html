@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app ng-controller="Register">
+<head>
+    <title>SpringJam Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="register.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="jumbotron">
+        This is an app which allows you to manage your jamband bucket list.
+    </div>
+
+    <div>
+
+        <form ng-submit="register()">
+        <table>
+            <ul>
+                <li><label>First Name</label><input type="text" id="first_name" name="first_name" ng-model="user.firstName"></li>
+                <li><label>Last Name</label><input type="text" id="last_name" name="last_name" ng-model="user.lastName"></li>
+                <li><label>Email</label><input type="text" id="email" name="email" ng-model="user.email"></li>
+                <li><label>Password</label><input type="text" id="password" name="password" ng-model="user.password"></li>
+                <li><label>Password Confirm</label><input type="text" id="password2" name="password2" ng-model="user.password2"></li>
+                <li><button type="submit">Register</button></li>
+            </ul>
+        </table>
+
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
