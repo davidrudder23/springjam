@@ -9,22 +9,28 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.*;
 
-import springjam.model.*;
-
-import java.security.MessageDigest;
+import springjam.band.Band;
+import springjam.band.BandRepository;
+import springjam.concert.Concert;
+import springjam.concert.ConcertRepository;
+import springjam.performance.Performance;
+import springjam.song.Song;
+import springjam.user.User;
+import springjam.user.UserRepository;
+import springjam.venue.Venue;
 
 
 @SpringBootApplication
 @RestController
 @EnableAutoConfiguration
-@EnableJpaRepositories("springjam.model")
-@ComponentScan(basePackages = { "springjam.net" })
-@EntityScan(basePackageClasses=Band.class)
+@EnableJpaRepositories(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song" })
+@ComponentScan(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song" })
+@EntityScan(basePackageClasses={ Band.class, User.class, Concert.class, Song.class, Performance.class, Venue.class})
 
 public class SpringJam {
 	
 	@Autowired
-	BandRepository bandRepository;
+    BandRepository bandRepository;
 
     @Autowired
     UserRepository userRepository;

@@ -1,4 +1,4 @@
-package springjam.model;
+package springjam.venue;
 
 import org.springframework.data.repository.CrudRepository;
 

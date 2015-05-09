@@ -1,6 +1,8 @@
-package springjam.model;
+package springjam.song;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import springjam.band.Band;
+import springjam.performance.Performance;
 
 import javax.persistence.*;
 import java.util.List;

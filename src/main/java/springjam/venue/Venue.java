@@ -1,4 +1,4 @@
-package springjam.model;
+package springjam.venue;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

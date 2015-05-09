@@ -1,6 +1,8 @@
-package springjam.model;
+package springjam.performance;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import springjam.concert.Concert;
+import springjam.song.Song;
 
 import javax.persistence.*;
 

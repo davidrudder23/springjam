@@ -1,4 +1,4 @@
-package springjam.model;
+package springjam.band;
 
 import javax.persistence.*;
 import java.util.List;

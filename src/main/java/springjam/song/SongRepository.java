@@ -1,4 +1,4 @@
-package springjam.model;
+package springjam.song;
 
 import org.springframework.data.repository.CrudRepository;
 

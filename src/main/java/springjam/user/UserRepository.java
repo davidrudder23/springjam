@@ -1,4 +1,4 @@
-package springjam.model;
+package springjam.user;
 
 import org.springframework.data.repository.CrudRepository;
 

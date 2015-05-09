@@ -1,6 +1,7 @@
-package springjam.model;
+package springjam.performance;
 
 import org.springframework.data.repository.CrudRepository;
+import springjam.concert.Concert;
 
 import java.util.List;
 

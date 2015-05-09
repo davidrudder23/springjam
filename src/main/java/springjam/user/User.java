@@ -1,7 +1,9 @@
-package springjam.model;
+package springjam.user;
 
 import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.data.annotation.Transient;
+import springjam.band.Band;
+import springjam.concert.Concert;
 
 import javax.persistence.*;
 import java.security.MessageDigest;

@@ -1,4 +1,8 @@
-package springjam.model;
+package springjam.concert;
+
+import springjam.band.Band;
+import springjam.performance.Performance;
+import springjam.venue.Venue;
 
 import javax.persistence.*;
 import java.util.Date;

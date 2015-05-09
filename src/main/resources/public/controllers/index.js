@@ -1,7 +1,7 @@
 function Band($scope, $http) {
     $http.get('/band').
         success(function(data) {
-            $scope.bands = data;
+            $scope.oldbands = data;
         }).then(function() {
             $http.get('/band/twiddle').
                 success(function(data) {

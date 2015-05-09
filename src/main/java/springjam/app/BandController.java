@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
-import springjam.model.Band;
-import springjam.model.BandRepository;
+import springjam.band.Band;
+import springjam.band.BandRepository;
 
 
 @SpringBootApplication
