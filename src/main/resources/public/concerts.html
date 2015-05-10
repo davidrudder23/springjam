@@ -2,7 +2,7 @@
 <html ng-app ng-controller="Concerts">
 <head>
     <title>SpringJam Registration</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
     <script src="controllers/concerts.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -27,6 +27,7 @@
         <div class="col-md-2"><strong>Band</strong></div>
         <div class="col-md-2"><strong>Date</strong></div>
         <div class="col-md-4"><strong>Venue</strong></div>
+        <div class="col-md-4"><strong>Did you attend?</strong></div>
     </div>
 
     <div ng-repeat="concert in concerts">
@@ -34,7 +35,7 @@
             <div class="col-md-2">{{concert.band.name}}</div>
             <div class="col-md-2">{{concert.date | date:'yyyy-MM-dd'}}</div>
             <div class="col-md-4">{{concert.venue.name}} ({{concert.venue.city}}, {{concert.venue.state}})</div>
-
+            <div><input type="checkbox" id="concert-attended-{{concert.id}}" ng-model="concert.attended" ng-checked="concert.attended" ng-click="toggleAttended(concert.id)"></div>
         </div>
         <div class="row" ng-repeat="performance in concert.performances">
             <div class="col-md-1"></div>

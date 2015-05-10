@@ -89,6 +89,31 @@ public class SpringJam {
         return concerts;
     }
 
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @ResponseBody
+    User currentUser() {
+        User user = userRepository.findOne(1l);
+        return user;
+    }
+
+    @RequestMapping(value = "/concert/attended/{concertId}/{attended}", method = RequestMethod.GET)
+    @ResponseBody
+    String toggleAttended(@PathVariable Long concertId, @PathVariable Boolean attended) {
+        User user = userRepository.findOne(1l);
+        Concert concert = concertRepository.findOne(concertId);
+        if (concert == null) {
+            return "Could not find concert";
+        }
+        if (attended) {
+            user.addConcert(concert);
+            userRepository.save(user);
+            return "Added";
+        } else {
+            user.removeConcert(concert);
+            userRepository.save(user);
+            return "Removed";
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(SpringJam.class, args);

@@ -1,7 +1,6 @@
 package springjam.user;
 
 import org.apache.tomcat.util.buf.HexUtils;
-import org.springframework.data.annotation.Transient;
 import springjam.band.Band;
 import springjam.concert.Concert;
 
@@ -9,6 +8,7 @@ import javax.persistence.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -99,7 +99,26 @@ public class User {
         return email+" <"+firstName+" "+lastName+">";
     }
 
+    public void removeConcert(Concert concert) {
+        if (concerts == null) return;
+        concerts.remove(concert);
+    }
 
+    public void addConcert(Concert concert) {
+        if (concerts == null) concerts = new ArrayList<Concert>();
+        if (concert == null) return;
+
+        boolean found = false;
+        for (Concert attendedConcert: concerts) {
+            if (concert.getId().equals(attendedConcert.getId())) {
+                found = true;
+            }
+        }
+
+        if (!found) {
+            concerts.add(concert);
+        }
+    }
 
     public void setPassword(String password, String salt) {
         try {
