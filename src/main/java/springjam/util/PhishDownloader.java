@@ -116,15 +116,6 @@ public class PhishDownloader {
     }
 
     public void importShow() {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-
-        Show show = restTemplate.execute("http://www.phishtracks.com/api/v1/shows/"+date, HttpMethod.GET, new MyRequestCallback(),
-                new MyResponseExtractor(Show.class, restTemplate.getMessageConverters()));
-
         Band band = bandRepository.findByName("Phish");
         if (band == null) {
             band = new Band();
@@ -132,16 +123,28 @@ public class PhishDownloader {
             bandRepository.save(band);
         }
 
+        try {
+            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+            Date concertDate = parser.parse(date);
+            if (concertRepository.findByBandAndDate(band, concertDate) != null) {
+                System.out.println ("This concert has already been loaded");
+                return;
+            }
+
+        } catch (ParseException parseExc) {
+            parseExc.printStackTrace();
+            return;
+        }
+
+        RestTemplate restTemplate = new RestTemplate();
+        Show show = restTemplate.execute("http://www.phishtracks.com/api/v1/shows/"+date, HttpMethod.GET, new MyRequestCallback(),
+                new MyResponseExtractor(Show.class, restTemplate.getMessageConverters()));
+
         Venue venue = venueRepository.findByName(show.getLocation());
         if (venue == null) {
             venue = new Venue();
             venue.setName(show.getLocation());
             venueRepository.save(venue);
-        }
-
-        if (concertRepository.findByBandAndDate(band, show.getDate()) != null) {
-            System.out.println ("This concert has already been loaded");
-            return;
         }
 
         Concert concert = new Concert();
