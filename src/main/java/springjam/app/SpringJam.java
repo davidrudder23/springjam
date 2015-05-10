@@ -14,17 +14,21 @@ import springjam.band.BandRepository;
 import springjam.concert.Concert;
 import springjam.concert.ConcertRepository;
 import springjam.performance.Performance;
+import springjam.performance.PerformanceRepository;
 import springjam.song.Song;
+import springjam.song.SongRepository;
 import springjam.user.User;
 import springjam.user.UserRepository;
+import springjam.util.PhishDownloader;
 import springjam.venue.Venue;
+import springjam.venue.VenueRepository;
 
 
 @SpringBootApplication
 @RestController
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song" })
-@ComponentScan(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song" })
+@EnableJpaRepositories(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song", "springjam.venue" })
+@ComponentScan(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song", "springjam.venue" })
 @EntityScan(basePackageClasses={ Band.class, User.class, Concert.class, Song.class, Performance.class, Venue.class})
 
 public class SpringJam {
@@ -37,6 +41,15 @@ public class SpringJam {
 
     @Autowired
     ConcertRepository concertRepository;
+
+    @Autowired
+    VenueRepository venueRepository;
+
+    @Autowired
+    PerformanceRepository performanceRepository;
+
+    @Autowired
+    SongRepository songRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
@@ -57,11 +70,7 @@ public class SpringJam {
     @ResponseBody
     Band band(@PathVariable String name) {
 		System.out.println("getting band "+name);
-		Iterable<Band> bands = bandRepository.findByName(name);
-        Band band = null;
-        if (bands.iterator().hasNext()) {
-            band = bands.iterator().next();
-        }
+		Band band = bandRepository.findByName(name);
         return band;
     }
 
@@ -79,7 +88,7 @@ public class SpringJam {
         user.setPassword(user.getPassword(), user.getSalt());
 
         userRepository.save(user);
-        return user.getPassword()+":"+user.getSalt();
+        return "User registered";
     }
 
     @RequestMapping(value = "/concert", method = RequestMethod.GET)
@@ -113,6 +122,22 @@ public class SpringJam {
             userRepository.save(user);
             return "Removed";
         }
+    }
+
+    @RequestMapping(value = "/phishdownloader/{date}", method = RequestMethod.GET)
+    @ResponseBody
+    String toggleAttended(@PathVariable String date) {
+        PhishDownloader phishDownloader = new PhishDownloader();
+        phishDownloader.setBandRepository(bandRepository);
+        phishDownloader.setVenueRepository(venueRepository);
+        phishDownloader.setUserRepository(userRepository);
+        phishDownloader.setConcertRepository(concertRepository);
+        phishDownloader.setPerformanceRepository(performanceRepository);
+        phishDownloader.setSongRepository(songRepository);
+        phishDownloader.setDate(date);
+
+        phishDownloader.importShow();
+        return "";
     }
 
     public static void main(String[] args) throws Exception {

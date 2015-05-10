@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface BandRepository extends CrudRepository<Band, Long> {
 	
-	public List<Band> findByName(String name);
+	public Band findByName(String name);
 
 }
