@@ -1,0 +1,53 @@
+<!doctype html>
+<html ng-app ng-controller="Songs">
+<head>
+    <title>SpringJam Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="controllers/songs.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!-- <link href="/bootstrap.css" rel="stylesheet"> -->
+
+</head>
+
+<body>
+<div ng-include="'header.html'"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4" ng-click="sortBy='band.name'; sortReverse = !sortReverse">
+                    <strong>Band</strong>
+                    <span ng-show="sortBy == 'band.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortBy == 'band.name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <div class="col-md-4" ng-click="sortBy='name'; sortReverse = !sortReverse">
+                    <strong>Song name</strong>
+                    <span ng-show="sortBy == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortBy == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <div class="col-md-4" ng-click="sortBy='seen'; sortReverse = !sortReverse">
+                    <strong>Seen</strong>
+                    <span ng-show="sortBy == 'seen' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortBy == 'seen' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+            </div>
+
+            <div class="row" ng-repeat="song in songs | orderBy:sortBy:sortReverse" ng-class-even="'song-even'" ng-class-odd="'song-odd'">
+                <div class="col-md-4">{{song.band.name}}</div>
+                <div class="col-md-4">{{song.name}}</div>
+                <div class="col-md-4"  ng-if="song.seen"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="hero-unit" id="song-details">
+            </div>
+        </div>
+    </div>
+</div>

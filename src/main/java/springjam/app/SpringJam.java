@@ -1,5 +1,6 @@
 package springjam.app;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -22,6 +23,10 @@ import springjam.user.UserRepository;
 import springjam.util.PhishDownloader;
 import springjam.venue.Venue;
 import springjam.venue.VenueRepository;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 @SpringBootApplication
@@ -122,6 +127,50 @@ public class SpringJam {
             userRepository.save(user);
             return "Removed";
         }
+    }
+    @RequestMapping(value =  "/song")
+    @ResponseBody
+    Iterable<Song> songs() {
+        return songRepository.findAll();
+    }
+
+    @RequestMapping(value =  "/song/{band}/seen")
+    @ResponseBody
+    List<Song> usersSeenSongs(@PathVariable Band band) {
+        User user = userRepository.findOne(1l);
+
+        List<Concert> attendedConcerts = user.getConcerts();
+        List<Song> seenSongs = new ArrayList<Song>();
+        for (Concert attendedConcert: attendedConcerts) {
+
+            // If we supplied a valid band, filter out songs that this band did not make
+            System.out.println ("Looking for band "+band+" and looking at band "+attendedConcert.getBand());
+            if ((band != null) && (!attendedConcert.getBand().equals(band))) {
+                continue;
+            }
+
+            System.out.println ("Matched!");
+            List<Performance> performances = attendedConcert.getPerformances();
+            for (Performance performance: performances) {
+                Song song = performance.getSong();
+                if (!seenSongs.contains(song)) {
+                    seenSongs.add(song);
+                }
+            }
+        }
+
+        return seenSongs;
+
+    }
+
+    @RequestMapping(value =  "/performances/{song}")
+    @ResponseBody
+    Iterable<Performance> performances(@PathVariable Song song) {
+        List<Concert> concerts = new ArrayList<Concert>();
+        Iterable<Performance> performances = performanceRepository.findBySong(song);
+
+        return performances;
+
     }
 
     @RequestMapping(value = "/phishdownloader/{date}", method = RequestMethod.GET)

@@ -1,5 +1,8 @@
 package springjam.concert;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import springjam.band.Band;
 import springjam.performance.Performance;
 import springjam.venue.Venue;
@@ -12,11 +15,13 @@ import java.util.List;
  * Created by drig on 5/4/15.
  */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Concert {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
 
     @ManyToOne
     Band band;
@@ -25,6 +30,7 @@ public class Concert {
     Venue venue;
 
     @OneToMany(mappedBy = "concert")
+    @JsonManagedReference
     List<Performance> performances;
 
     Date date;

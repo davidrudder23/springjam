@@ -1,6 +1,9 @@
 package springjam.performance;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import springjam.concert.Concert;
 import springjam.song.Song;
 
@@ -9,13 +12,14 @@ import javax.persistence.*;
 /**
  * Created by drig on 5/4/15.
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 public class Performance {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    @JsonIgnore
+    @JsonBackReference()
     @ManyToOne
     private Concert concert;
 
