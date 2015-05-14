@@ -1,8 +1,7 @@
 package springjam.song;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import springjam.band.Band;
 import springjam.performance.Performance;
+import springjam.band.Band;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,9 +21,8 @@ public class Song {
     @ManyToOne
     private Band band;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "song")
-    List<Performance> whenPlayed;
+    List<Performance> performances;
 
 
     public String getName() {
@@ -52,11 +50,11 @@ public class Song {
         this.band = band;
     }
 
-    public List<Performance> getWhenPlayed() {
-        return whenPlayed;
+    public List<Performance> getPerformances() {
+        return performances;
     }
 
-    public void setWhenPlayed(List<Performance> whenPlayed) {
-        this.whenPlayed = whenPlayed;
+    public void setPerformances(List<Performance> performances) {
+        this.performances = performances;
     }
 }

@@ -21,4 +21,21 @@ function Songs($scope, $http) {
 
     $scope.sortBy = 'seen';
     $scope.sortReverse = true;
+
+    $scope.showSong = function(id) {
+        $http.get("/song/"+id).
+            success(function(data) {
+                $scope.song = data;
+            }).then(function() {
+                console.log($scope.song);
+                angular.forEach($scope.song.performances, function (performance, idx) {
+                    console.log(performance);
+                    console.log("Looking for concert "+performance.concert);
+                    $http.get("/concert/" + performance.concert).
+                        success(function (data) {
+                            performance.concert = data;
+                        });
+                });
+            });
+    }
 }

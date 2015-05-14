@@ -9,3 +9,9 @@ body {
 .song-odd {
     background-color: aliceblue;
 }
+
+.song-details {
+    position: fixed;
+    top: 75px;
+    right: 25%;
+}

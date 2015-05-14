@@ -27,26 +27,34 @@
                     <span ng-show="sortBy == 'band.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                     <span ng-show="sortBy == 'band.name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
                 </div>
-                <div class="col-md-4" ng-click="sortBy='name'; sortReverse = !sortReverse">
+                <div class="col-md-6" ng-click="sortBy='name'; sortReverse = !sortReverse">
                     <strong>Song name</strong>
                     <span ng-show="sortBy == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                     <span ng-show="sortBy == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
                 </div>
-                <div class="col-md-4" ng-click="sortBy='seen'; sortReverse = !sortReverse">
+                <div class="col-md-2" ng-click="sortBy='seen'; sortReverse = !sortReverse">
                     <strong>Seen</strong>
                     <span ng-show="sortBy == 'seen' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                     <span ng-show="sortBy == 'seen' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
                 </div>
             </div>
 
-            <div class="row" ng-repeat="song in songs | orderBy:sortBy:sortReverse" ng-class-even="'song-even'" ng-class-odd="'song-odd'">
+            <div class="row" ng-repeat="song in songs | orderBy:sortBy:sortReverse" ng-class-even="'song-even'" ng-class-odd="'song-odd'" ng-click="showSong(song.id)">
                 <div class="col-md-4">{{song.band.name}}</div>
-                <div class="col-md-4">{{song.name}}</div>
-                <div class="col-md-4"  ng-if="song.seen"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></div>
+                <div class="col-md-6">{{song.name}}</div>
+                <div class="col-md-2"  ng-if="song.seen"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4 song-details">
             <div class="hero-unit" id="song-details">
+                <div><h3>{{song.name}}<h3></div>
+                <div><h4>{{song.band.name}}</h4></div>
+                <div ng-repeat="performance in song.performances">
+                    <p>
+                    <div>{{performance.concert.venue.name}}</div>
+                    <div>{{performance.concert.date | date:'yyyy-MM-dd'}}</div>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

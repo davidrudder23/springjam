@@ -3,8 +3,8 @@ package springjam.concert;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import springjam.band.Band;
 import springjam.performance.Performance;
+import springjam.band.Band;
 import springjam.venue.Venue;
 
 import javax.persistence.*;

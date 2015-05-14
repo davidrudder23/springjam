@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
-
 import springjam.band.Band;
 import springjam.band.BandRepository;
 
@@ -17,7 +16,7 @@ import springjam.band.BandRepository;
 public class BandController {
 	
 	@Autowired
-	BandRepository bandRepository;
+    BandRepository bandRepository;
 
 	@RequestMapping(method=RequestMethod.GET)
     @ResponseBody

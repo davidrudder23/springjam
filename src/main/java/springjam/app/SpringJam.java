@@ -1,7 +1,7 @@
 package springjam.app;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import org.springframework.beans.factory.annotation.Autowired;
+import
+        org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +25,6 @@ import springjam.venue.Venue;
 import springjam.venue.VenueRepository;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -103,6 +102,13 @@ public class SpringJam {
         return concerts;
     }
 
+    @RequestMapping(value = "/concert/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    Concert concert(@PathVariable Long id) {
+        Concert concert = concertRepository.findOne(id);
+        return concert;
+    }
+
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
     User currentUser() {
@@ -132,6 +138,12 @@ public class SpringJam {
     @ResponseBody
     Iterable<Song> songs() {
         return songRepository.findAll();
+    }
+
+    @RequestMapping(value =  "/song/{id}")
+    @ResponseBody
+    Song song(@PathVariable Long id) {
+        return songRepository.findOne(id);
     }
 
     @RequestMapping(value =  "/song/{band}/seen")

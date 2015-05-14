@@ -7,6 +7,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -19,9 +20,6 @@
 
 
 <div class="container">
-    <div class="jumbotron">
-        This is an app which allows you to manage your jamband bucket list.
-    </div>
 
     <div class="row">
         <div class="col-md-2"><strong>Band</strong></div>
@@ -30,7 +28,7 @@
         <div class="col-md-4"><strong>Did you attend?</strong></div>
     </div>
 
-    <div ng-repeat="concert in concerts">
+    <div class="hero-unit" ng-repeat="concert in concerts">
         <div class="row">
             <div class="col-md-2">{{concert.band.name}}</div>
             <div class="col-md-2">{{concert.date | date:'yyyy-MM-dd'}}</div>
