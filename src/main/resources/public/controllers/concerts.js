@@ -22,6 +22,9 @@ function Concerts($scope, $http) {
                 })
         });
 
+    $scope.sortBy = 'seen';
+    $scope.sortReverse = true;
+
     $scope.toggleAttended = function(attendedConcertId) {
         angular.forEach($scope.concerts, function (concert, concertId) {
             console.log(concert.id+" attended="+concert.attended);
