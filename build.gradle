@@ -51,14 +51,10 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE")
 }
 
-/*
 dependencies {
     // for OAuth 2.0
     compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.7.RELEASE'
-    // for OAuth 1.0a
-    compile 'org.springframework.security.oauth:spring-security-oauth:2.0.7.RELEASE'
 }
- */
 
 idea {
     module {

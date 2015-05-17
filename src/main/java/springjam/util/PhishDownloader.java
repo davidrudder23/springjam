@@ -28,6 +28,7 @@ import springjam.venue.VenueRepository;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -168,6 +169,9 @@ class MyRequestCallback implements RequestCallback {
     @Override
     public void doWithRequest(ClientHttpRequest request) throws IOException {
         request.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        List<MediaType> accepts = new ArrayList<MediaType>();
+        accepts.add(MediaType.APPLICATION_JSON);
+        request.getHeaders().setAccept(accepts);
     }
 }
 

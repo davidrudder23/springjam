@@ -1,13 +1,22 @@
 package springjam.app;
 
-import
-        org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.web.bind.annotation.*;
 
 import springjam.band.Band;
@@ -36,8 +45,8 @@ import java.util.List;
 @EntityScan(basePackageClasses={ Band.class, User.class, Concert.class, Song.class, Performance.class, Venue.class})
 
 public class SpringJam {
-	
-	@Autowired
+
+    @Autowired
     BandRepository bandRepository;
 
     @Autowired
@@ -58,30 +67,30 @@ public class SpringJam {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     Iterable<User> home() {
-		Iterable<User> users = userRepository.findAll();
+        Iterable<User> users = userRepository.findAll();
         return users;
     }
 
-	@RequestMapping(value = "/band", method = RequestMethod.GET)
+    @RequestMapping(value = "/band", method = RequestMethod.GET)
     @ResponseBody
     Iterable<Band> band() {
-		System.out.println("getting all bands");
-		Iterable<Band> bands = bandRepository.findAll();
+        System.out.println("getting all bands");
+        Iterable<Band> bands = bandRepository.findAll();
         return bands;
     }
 
-	@RequestMapping(value = "/band/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/band/{name}", method = RequestMethod.GET)
     @ResponseBody
     Band band(@PathVariable String name) {
-		System.out.println("getting band "+name);
-		Band band = bandRepository.findByName(name);
+        System.out.println("getting band " + name);
+        Band band = bandRepository.findByName(name);
         return band;
     }
 
 
-
-    @RequestMapping(value="/registerUser", method=RequestMethod.POST)
-    @ResponseBody String registerUser(@RequestBody User user) {
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    @ResponseBody
+    String registerUser(@RequestBody User user) {
 
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser != null) {
@@ -134,36 +143,37 @@ public class SpringJam {
             return "Removed";
         }
     }
-    @RequestMapping(value =  "/song")
+
+    @RequestMapping(value = "/song")
     @ResponseBody
     Iterable<Song> songs() {
         return songRepository.findAll();
     }
 
-    @RequestMapping(value =  "/song/{id}")
+    @RequestMapping(value = "/song/{id}")
     @ResponseBody
     Song song(@PathVariable Long id) {
         return songRepository.findOne(id);
     }
 
-    @RequestMapping(value =  "/song/{band}/seen")
+    @RequestMapping(value = "/song/{band}/seen")
     @ResponseBody
     List<Song> usersSeenSongs(@PathVariable Band band) {
         User user = userRepository.findOne(1l);
 
         List<Concert> attendedConcerts = user.getConcerts();
         List<Song> seenSongs = new ArrayList<Song>();
-        for (Concert attendedConcert: attendedConcerts) {
+        for (Concert attendedConcert : attendedConcerts) {
 
             // If we supplied a valid band, filter out songs that this band did not make
-            System.out.println ("Looking for band "+band+" and looking at band "+attendedConcert.getBand());
+            System.out.println("Looking for band " + band + " and looking at band " + attendedConcert.getBand());
             if ((band != null) && (!attendedConcert.getBand().equals(band))) {
                 continue;
             }
 
-            System.out.println ("Matched!");
+            System.out.println("Matched!");
             List<Performance> performances = attendedConcert.getPerformances();
-            for (Performance performance: performances) {
+            for (Performance performance : performances) {
                 Song song = performance.getSong();
                 if (!seenSongs.contains(song)) {
                     seenSongs.add(song);
@@ -175,7 +185,7 @@ public class SpringJam {
 
     }
 
-    @RequestMapping(value =  "/performances/{song}")
+    @RequestMapping(value = "/performances/{song}")
     @ResponseBody
     Iterable<Performance> performances(@PathVariable Song song) {
         List<Concert> concerts = new ArrayList<Concert>();
@@ -203,5 +213,58 @@ public class SpringJam {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(SpringJam.class, args);
+    }
+
+
+    private static final String RESOURCE_ID = "springjam";
+
+    @Configuration
+    @EnableAuthorizationServer
+    protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
+
+        @Autowired
+        private AuthenticationManager authenticationManager;
+
+        @Override
+        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+            endpoints.authenticationManager(authenticationManager);
+        }
+
+        @Override
+        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+            clients.inMemory()
+                    .withClient("springjam")
+                    .secret("jamalamadingdong")
+                    .authorizedGrantTypes("authorization_code", "refresh_token",
+                            "password").scopes("openid");
+        }
+
+    }
+
+    @Configuration
+    @EnableResourceServer
+    protected static class ResourceServer extends ResourceServerConfigurerAdapter {
+
+        @Override // [3]
+        public void configure(HttpSecurity http) throws Exception {
+            // @formatter:off
+            http
+                    .authorizeRequests()
+                    .antMatchers("/index.html").permitAll()
+                    .antMatchers("/noauth/**").permitAll()
+                    .antMatchers("/styles/**").permitAll()
+                    .antMatchers("/js/**").permitAll()
+                    .antMatchers("/controllers/**").permitAll()
+                    .antMatchers("/**")
+                    .access("#oauth2.hasScope('read')")
+                    .and().formLogin().loginPage("/noauth/login.html");
+            // @formatter:on
+        }
+
+        @Override
+        public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+            resources.resourceId(RESOURCE_ID);
+        }
+
     }
 }
