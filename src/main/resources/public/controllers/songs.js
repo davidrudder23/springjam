@@ -1,5 +1,5 @@
 function Songs($scope, $http) {
-    $http.get('/song').
+    $http.get('/api/song').
         success(function(data) {
             $scope.songs = data;
         }).then(function(data) {
@@ -23,7 +23,7 @@ function Songs($scope, $http) {
     $scope.sortReverse = true;
 
     $scope.showSong = function(id) {
-        $http.get("/song/"+id).
+        $http.get("/api/song/"+id).
             success(function(data) {
                 $scope.song = data;
             }).then(function() {
@@ -31,7 +31,7 @@ function Songs($scope, $http) {
                 angular.forEach($scope.song.performances, function (performance, idx) {
                     console.log(performance);
                     console.log("Looking for concert "+performance.concert);
-                    $http.get("/concert/" + performance.concert).
+                    $http.get("/api/concert/" + performance.concert).
                         success(function (data) {
                             performance.concert = data;
                         });

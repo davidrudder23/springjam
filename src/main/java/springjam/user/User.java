@@ -1,5 +1,6 @@
 package springjam.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.tomcat.util.buf.HexUtils;
 import springjam.band.Band;
 import springjam.concert.Concert;
@@ -16,21 +17,29 @@ public class User {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @JsonIgnore
     private long id;
     
     private String firstName;
     private String lastName;
     private String email;
+
+    @JsonIgnore
     private String hashedPassword;
+
+    @JsonIgnore
     private String salt;
 
     @ManyToMany
+    @JsonIgnore
     private List<Band> favoriteBands;
 
     @ManyToMany
+    @JsonIgnore
     private List<Concert> concerts;
 
     @Transient
+    @JsonIgnore
     private String password;
 
 	public String getFirstName() {

@@ -20,7 +20,7 @@ public class SpringJamUserDetails implements UserDetails {
 
     public SpringJamUserDetails(User user) {
         this.user = user;
-        this.authorities = unmodifiableList(asList(new SimpleGrantedAuthority("user"), new SimpleGrantedAuthority("")));
+        this.authorities = unmodifiableList(asList(new SimpleGrantedAuthority("ROLE_USER")));
     }
 
     @Override
@@ -38,9 +38,7 @@ public class SpringJamUserDetails implements UserDetails {
         return user.getEmail();
     }
 
-    public String getSalt() {
-        return user.getSalt();
-    }
+    public String getSalt() { return user.getSalt();  }
 
     @Override
     public boolean isAccountNonExpired() {

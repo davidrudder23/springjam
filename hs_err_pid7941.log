@@ -1,0 +1,126 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f1ded016f14, pid=7941, tid=139765255870208
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_25-b17) (build 1.8.0_25-b17)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.25-b02 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# j  java.io.ObjectStreamClass$FieldReflector.getObjFieldValues(Ljava/lang/Object;[Ljava/lang/Object;)V+77
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f1d98001000):  JavaThread "localhost-startStop-2" daemon [_thread_in_Java, id=8392, stack(0x00007f1da25d9000,0x00007f1da26da000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000002a80180
+
+Registers:
+RAX=0x0000000002a80178, RBX=0x0000000000000000, RCX=0x0000000000000000, RDX=0x000000077403a360
+RSP=0x00007f1da26d78a8, RBP=0x00007f1da26d7900, RSI=0x0000000002a80178, RDI=0x00007f1da26d77e0
+R8 =0x0000000000000000, R9 =0xfffffffffffffff8, R10=0x00007f1e0328ed60, R11=0x00007f1ded1df6d8
+R12=0x0000000000000000, R13=0x00007f1da2a2f198, R14=0x00007f1da26d7928, R15=0x00007f1d98001000
+RIP=0x00007f1ded016f14, EFLAGS=0x0000000000010206, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f1da26d78a8)
+0x00007f1da26d78a8:   0000000002a80178 0000000000000000
+0x00007f1da26d78b8:   000000077403a360 00007f1da26d78c0
+0x00007f1da26d78c8:   00007f1da2a2f195 00007f1da26d7928
+0x00007f1da26d78d8:   00007f1da2a31e58 0000000000000000
+0x00007f1da26d78e8:   00007f1da2a2f1c0 0000000000000000
+0x00007f1da26d78f8:   00007f1da26d7918 00007f1da26d7970
+0x00007f1da26d7908:   00007f1ded00798d 0000000000000000
+0x00007f1da26d7918:   000000077403a360 0000000772be7050
+0x00007f1da26d7928:   0000000774035c70 00007f1da26d7930
+0x00007f1da26d7938:   00007f1da2a26d16 00007f1da26d7990
+0x00007f1da26d7948:   00007f1da2a29fb0 0000000000000000
+0x00007f1da26d7958:   00007f1da2a26d20 00007f1da26d7918
+0x00007f1da26d7968:   00007f1da26d7980 00007f1da26d79d8
+0x00007f1da26d7978:   00007f1ded00798d 000000077403a360
+0x00007f1da26d7988:   0000000772be7050 0000000773ff7dc8
+0x00007f1da26d7998:   00007f1da26d7998 00007f1de0f7b14d
+0x00007f1da26d79a8:   00007f1da26d7a30 00007f1da2a1c028
+0x00007f1da26d79b8:   0000000000000000 00007f1de0f7b228
+0x00007f1da26d79c8:   00007f1da26d7980 00007f1da26d7a20
+0x00007f1da26d79d8:   00007f1da26d7a78 00007f1ded00798d
+0x00007f1da26d79e8:   0000000000000000 0000000000000000
+0x00007f1da26d79f8:   0000000000000000 000000077403a360
+0x00007f1da26d7a08:   00000007740138a8 0000000000000000
+0x00007f1da26d7a18:   0000000772be6f48 0000000773ff7dc8
+0x00007f1da26d7a28:   0000000772be7050 0000000773e9c6b8
+0x00007f1da26d7a38:   00007f1da26d7a38 00007f1de0f7b003
+0x00007f1da26d7a48:   00007f1da26d7ac8 00007f1da2a1c028
+0x00007f1da26d7a58:   0000000000000000 00007f1de0f7b050
+0x00007f1da26d7a68:   00007f1da26d7a20 00007f1da26d7ab8
+0x00007f1da26d7a78:   00007f1da26d7b10 00007f1ded00798d
+0x00007f1da26d7a88:   0000000000000000 0000000000000000
+0x00007f1da26d7a98:   0000000000000000 0000000773ff7dc8 
+
+Instructions: (pc=0x00007f1ded016f14)
+0x00007f1ded016ef4:   8b 4c 24 08 48 8b 54 24 10 48 63 c9 3b 4a 0c 8b
+0x00007f1ded016f04:   d9 0f 83 f5 95 ff ff 48 85 c0 0f 84 36 01 00 00
+0x00007f1ded016f14:   8b 58 08 48 c1 e3 03 8b 42 08 48 c1 e0 03 48 8b
+0x00007f1ded016f24:   80 e8 00 00 00 48 8d 54 8a 10 48 8b 4d e0 48 85 
+
+Register to memory mapping:
+
+RAX=0x0000000002a80178 is an unknown value
+RBX=0x0000000000000000 is an unknown value
+RCX=0x0000000000000000 is an unknown value
+RDX=0x000000077403a360 is an oop
+[Ljava.lang.Object; 
+ - klass: 'java/lang/Object'[]
+ - length: 2
+RSP=0x00007f1da26d78a8 is pointing into the stack for thread: 0x00007f1d98001000
+RBP=0x00007f1da26d7900 is pointing into the stack for thread: 0x00007f1d98001000
+RSI=0x0000000002a80178 is an unknown value
+RDI=0x00007f1da26d77e0 is pointing into the stack for thread: 0x00007f1d98001000
+R8 =0x0000000000000000 is an unknown value
+R9 =0xfffffffffffffff8 is an unknown value
+R10=0x00007f1e0328ed60: <offset 0xf5fd60> in /usr/local/jdk1.8.0_25/jre/lib/amd64/server/libjvm.so at 0x00007f1e0232f000
+R11=0x00007f1ded1df6d8 is at entry_point+24 in (nmethod*)0x00007f1ded1df550
+R12=0x0000000000000000 is an unknown value
+R13=0x00007f1da2a2f198 is pointing into metadata
+R14=0x00007f1da26d7928 is pointing into the stack for thread: 0x00007f1d98001000
+R15=0x00007f1d98001000 is a thread
+
+
+Stack: [0x00007f1da25d9000,0x00007f1da26da000],  sp=0x00007f1da26d78a8,  free space=1018k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+j  java.io.ObjectStreamClass$FieldReflector.getObjFieldValues(Ljava/lang/Object;[Ljava/lang/Object;)V+77
+j  java.io.ObjectStreamClass.getObjFieldValues(Ljava/lang/Object;[Ljava/lang/Object;)V+6
+j  java.io.ObjectOutputStream.defaultWriteFields(Ljava/lang/Object;Ljava/io/ObjectStreamClass;)V+117
+j  java.io.ObjectOutputStream.writeSerialData(Ljava/lang/Object;Ljava/io/ObjectStreamClass;)V+211
+j  java.io.ObjectOutputStream.writeOrdinaryObject(Ljava/lang/Object;Ljava/io/ObjectStreamClass;Z)V+137
+j  java.io.ObjectOutputStream.writeObject0(Ljava/lang/Object;Z)V+506
+j  java.io.ObjectOutputStream.defaultWriteFields(Ljava/lang/Object;Ljava/io/ObjectStreamClass;)V+226
+j  java.io.ObjectOutputStream.writeSerialData(Ljava/lang/Object;Ljava/io/ObjectStreamClass;)V+211
+j  java.io.ObjectOutputStream.writeOrdinaryObject(Ljava/lang/Object;Ljava/io/ObjectStreamClass;Z)V+137
+j  java.io.ObjectOutputStream.writeObject0(Ljava/lang/Object;Z)V+506
+j  java.io.ObjectOutputStream.defaultWriteFields(Ljava/lang/Object;Ljava/io/ObjectStreamClass;)V+226
+j  java.io.ObjectOutputStream.writeSerialData(Ljava/lang/Object;Ljava/io/ObjectStreamClass;)V+211
+j  java.io.ObjectOutputStream.writeOrdinaryObject(Ljava/lang/Object;Ljava/io/ObjectStreamClass;Z)V+137
+j  java.io.ObjectOutputStream.writeObject0(Ljava/lang/Object;Z)V+506
+j  java.io.ObjectOutputStream.writeObject(Ljava/lang/Object;)V+16
+j  org.apache.catalina.session.StandardSession.doWriteObject(Ljava/io/ObjectOutputStream;)V+290
+j  org.apache.catalina.session.StandardSession.writeObjectData(Ljava/io/ObjectOutputStream;)V+2
+j  org.apache.catalina.session.StandardManager.doUnload()V+438
+j  org.apache.catalina.session.StandardManager.unload()V+84
+j  org.apache.catalina.session.StandardManager.stopInternal()V+32
+j  org.apache.catalina.util.LifecycleBase.stop()V+227
+j  org.apache.catalina.core.StandardContext.stopInternal()V+120
+j  org.apache.catalina.util.LifecycleBase.stop()V+227
+j  org.apache.catalina.core.ContainerBase$StopChild.call()Ljava/lang/Void;+19
+j  org.apache.catalina.core.ContainerBase$StopChild.call()Ljava/lang/Object;+1
+j  java.util.concurrent.FutureTask.run()V+42
+j  java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V+95
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x664086]

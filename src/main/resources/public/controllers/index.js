@@ -1,5 +1,5 @@
 function Band($scope, $http) {
-    $http.get('/band').
+    $http.get('/api/band').
         success(function(data) {
             $scope.oldbands = data;
         }).then(function() {

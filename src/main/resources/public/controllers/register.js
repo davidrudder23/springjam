@@ -1,5 +1,5 @@
 function Register($scope, $http) {
-    $http.get('/band').
+    $http.get('/api/band').
         success(function(data) {
             $scope.bands = data;
         });
@@ -14,7 +14,7 @@ function Register($scope, $http) {
             alert ("passwords don't match!")
             return;
         }
-        $http.post("/registerUser", $scope.user);
+        $http.post("/api/noauth/registerUser", $scope.user);
     };
 
 }

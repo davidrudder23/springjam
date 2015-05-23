@@ -10,13 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.web.bind.annotation.*;
 
 import springjam.band.Band;
@@ -33,6 +26,7 @@ import springjam.util.PhishDownloader;
 import springjam.venue.Venue;
 import springjam.venue.VenueRepository;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +35,9 @@ import java.util.List;
 @RestController
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song", "springjam.venue" })
-@ComponentScan(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song", "springjam.venue" })
+@ComponentScan(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song", "springjam.venue", "springjam.auth" })
 @EntityScan(basePackageClasses={ Band.class, User.class, Concert.class, Song.class, Performance.class, Venue.class})
-
+@RequestMapping(value = "/api")
 public class SpringJam {
 
     @Autowired
@@ -88,7 +82,7 @@ public class SpringJam {
     }
 
 
-    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/noauth/registerUser", method = RequestMethod.POST)
     @ResponseBody
     String registerUser(@RequestBody User user) {
 
@@ -218,53 +212,4 @@ public class SpringJam {
 
     private static final String RESOURCE_ID = "springjam";
 
-    @Configuration
-    @EnableAuthorizationServer
-    protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
-
-        @Autowired
-        private AuthenticationManager authenticationManager;
-
-        @Override
-        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-            endpoints.authenticationManager(authenticationManager);
-        }
-
-        @Override
-        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-            clients.inMemory()
-                    .withClient("springjam")
-                    .secret("jamalamadingdong")
-                    .authorizedGrantTypes("authorization_code", "refresh_token",
-                            "password").scopes("openid");
-        }
-
-    }
-
-    @Configuration
-    @EnableResourceServer
-    protected static class ResourceServer extends ResourceServerConfigurerAdapter {
-
-        @Override // [3]
-        public void configure(HttpSecurity http) throws Exception {
-            // @formatter:off
-            http
-                    .authorizeRequests()
-                    .antMatchers("/index.html").permitAll()
-                    .antMatchers("/noauth/**").permitAll()
-                    .antMatchers("/styles/**").permitAll()
-                    .antMatchers("/js/**").permitAll()
-                    .antMatchers("/controllers/**").permitAll()
-                    .antMatchers("/**")
-                    .access("#oauth2.hasScope('read')")
-                    .and().formLogin().loginPage("/noauth/login.html");
-            // @formatter:on
-        }
-
-        @Override
-        public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-            resources.resourceId(RESOURCE_ID);
-        }
-
-    }
 }

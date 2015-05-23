@@ -1,6 +1,6 @@
 package springjam.auth;
 
-import org.apache.commons.codec.binary.Hex;
+import org.springframework.security.crypto.codec.Hex;
 import org.springframework.stereotype.Service;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 
@@ -16,19 +16,17 @@ public class SpringJamPasswordEncoder implements PasswordEncoder {
 
     @Override
     public String encodePassword(String password, Object salt) {
-        return encodePassword(password, effectiveSalt(salt), "SHA-1");
+        return encodePassword(password, effectiveSalt(salt), "SHA-256");
     }
 
     @Override
     public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
-        return encPass.equalsIgnoreCase(encodePassword(rawPass, salt))
-                || encPass.equalsIgnoreCase(encodePassword(rawPass, effectiveSalt(salt), "SHA-512"));
+        return encPass.equalsIgnoreCase(encodePassword(rawPass, salt));
     }
 
     private String effectiveSalt(Object salt) {
-        // salt can be null when dummy operations are performed - spring security runs password checks even
-        // when a principal is not found to prevent timing attacks.
-        return salt != null ? (String) salt : "placeholder";
+        if (salt == null) return "nosalt";
+        return (String)salt;
     }
 
     private String encodePassword(String password, String salt, String type) {
@@ -36,10 +34,13 @@ public class SpringJamPasswordEncoder implements PasswordEncoder {
             MessageDigest digest = MessageDigest.getInstance(type);
 
             digest.update(password.getBytes());
-            digest.update(":".getBytes());
-            digest.update(salt.getBytes());
+            //digest.update(":".getBytes());
+            //digest.update(salt.getBytes());
 
-            return new String(Hex.encodeHex(digest.digest()));
+            byte[] digestBytes = digest.digest();
+            System.out.println("Encoding "+password+":"+salt);
+            System.out.println("Encoded password="+new String(Hex.encode(digestBytes)));
+            return new String(Hex.encode(digestBytes));
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException("The JVM doesn't know what " + type + " is, unable to continue");
         }

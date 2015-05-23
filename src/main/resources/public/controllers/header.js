@@ -1,5 +1,5 @@
 function Header($scope, $http) {
-    $http.get('/band').
+    $http.get('/api/band').
         success(function(data) {
             $scope.bands = data;
         });

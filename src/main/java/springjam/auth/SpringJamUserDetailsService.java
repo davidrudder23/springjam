@@ -29,6 +29,7 @@ public class SpringJamUserDetailsService  implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User " + username + " not found");
         }
+
         return new SpringJamUserDetails(user);
     }
 }

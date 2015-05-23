@@ -1,9 +1,13 @@
 function Concerts($scope, $http) {
-    $http.get('/concert').
+    // Handle login
+    //$http.defaults.headers.common.Authorization = 'Basic '+btoa($rootScope.username+":"+$rootScope.password);
+
+    $http
+        .get('/api/concert').
         success(function(data) {
             $scope.concerts = data;
         }).then(function(data) {
-            $http.get('/user').
+            $http.get('/api/user').
                 success(function (data) {
                     $scope.user = data;
                 }).then(function (data) {
@@ -30,7 +34,7 @@ function Concerts($scope, $http) {
             console.log(concert.id+" attended="+concert.attended);
             if (concert.id == attendedConcertId) {
                 console.log("toggling "+attendedConcertId);
-                $http.get("/concert/attended/"+concert.id+"/"+(concert.attended?"true":"false")).
+                $http.get("/api/concert/attended/"+concert.id+"/"+(concert.attended?"true":"false")).
                    success(function(data) {
                         console.log(data);
                     });
