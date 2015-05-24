@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: spring-aspects-4.2.0.BUILD-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.2.0.BUILD-SNAPSHOT/58f35388cec6d06db2dade6c4002e2926203e133/spring-aspects-4.2.0.BUILD-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.2.0.BUILD-SNAPSHOT/457c5c3bc63a0a7ad53794b381b16c4fe5559467/spring-aspects-4.2.0.BUILD-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.2.0.BUILD-SNAPSHOT/2790cb7f9c0850b9c3529624b869433996ec97d8/spring-aspects-4.2.0.BUILD-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.2.0.BUILD-SNAPSHOT/337ffdfd4e72d333aa7c88a9f6d201b1518485de/spring-aspects-4.2.0.BUILD-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

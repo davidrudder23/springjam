@@ -1,9 +1,11 @@
 function Concerts($scope, $http) {
     // Handle login
-    //$http.defaults.headers.common.Authorization = 'Basic '+btoa($rootScope.username+":"+$rootScope.password);
-
+    $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("username")+":"+localStorage.getItem("password"));
     $http
         .get('/api/concert').
+        error(function(data) {
+           window.location = "/login.html";
+        }).
         success(function(data) {
             $scope.concerts = data;
         }).then(function(data) {

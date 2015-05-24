@@ -22,6 +22,9 @@ public class SpringJamWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     SpringJamPasswordEncoder passwordEncoder;
+
+    @Autowired
+    SpringJamAuthenticationEntryPoint authenticationEntryPoint;
     /**
      * This section defines the user accounts which can be used for
      * authentication as well as the roles each user has.
@@ -31,6 +34,7 @@ public class SpringJamWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
+
     }
 
     /**
@@ -46,10 +50,13 @@ public class SpringJamWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .httpBasic().and()
+                .httpBasic()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .and()
                 .authorizeRequests()
                 .antMatchers("/api/noauth/**").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().csrf().disable();
+
     }
 }
