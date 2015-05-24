@@ -3,6 +3,7 @@
 <head>
     <title>SpringJam Registration</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="/controllers/header.js"></script>
     <script src="/controllers/concerts.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -16,7 +17,7 @@
 </head>
 
 <body>
-<div ng-include="'/noauth/header.html'"></div>
+<div ng-include="'/noauth/header.html'" ng-controller="Header"></div>
 
 
 <div class="container">

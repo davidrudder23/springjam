@@ -4,6 +4,7 @@
     <title>{{twiddle.name}}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="/controllers/header.js"></script>
     <script src="/controllers/index.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -15,7 +16,7 @@
 </head>
 
 <body>
-<div ng-include="'/noauth/header.html'" onload="loadHeader();"></div>
+<div ng-include="'/noauth/header.html'" ng-controller="Header"></div>
 
     <div class="container">
         <div class="jumbotron">
