@@ -29,7 +29,7 @@ public class Concert {
     @ManyToOne
     Venue venue;
 
-    @OneToMany(mappedBy = "concert")
+    @OneToMany(mappedBy = "concert", fetch = FetchType.EAGER)
     @JsonManagedReference
     List<Performance> performances;
 

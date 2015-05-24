@@ -1,5 +1,7 @@
 package springjam.auth;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.stereotype.Service;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
@@ -13,6 +15,8 @@ import java.security.NoSuchAlgorithmException;
 @Service
 @SuppressWarnings("deprecation")
 public class SpringJamPasswordEncoder implements PasswordEncoder {
+
+    protected final Log logger = LogFactory.getLog(this.getClass());
 
     @Override
     public String encodePassword(String password, Object salt) {
@@ -30,6 +34,7 @@ public class SpringJamPasswordEncoder implements PasswordEncoder {
     }
 
     private String encodePassword(String password, String salt, String type) {
+        logger.info("Encoding password "+password+" with type "+type);
         try {
             MessageDigest digest = MessageDigest.getInstance(type);
 

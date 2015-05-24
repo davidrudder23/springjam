@@ -1,6 +1,6 @@
 function Concerts($scope, $http) {
     // Handle login
-    $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("username")+":"+localStorage.getItem("password"));
+    $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
     $http
         .get('/api/concert').
         error(function(data) {
@@ -9,16 +9,15 @@ function Concerts($scope, $http) {
         success(function(data) {
             $scope.concerts = data;
         }).then(function(data) {
-            $http.get('/api/user').
+            $http.get('/api/concert/0/seen').
                 success(function (data) {
-                    $scope.user = data;
+                    $scope.seenConcerts= data;
                 }).then(function (data) {
                     console.log($scope.concerts);
                     angular.forEach($scope.concerts, function (concert, concertId) {
                         concert.attended = false;
 
-
-                        angular.forEach($scope.user.concerts, function (attendedConcert, attendedConcertId) {
+                        angular.forEach($scope.seenConcerts, function (attendedConcert, attendedConcertId) {
                             if (concert.id == attendedConcert.id) {
                                 console.log($scope.user.firstName+" "+$scope.user.lastName+" attended "+concert.band.name);
                                 concert.attended=true;

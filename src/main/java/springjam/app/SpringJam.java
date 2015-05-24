@@ -1,5 +1,7 @@
 package springjam.app;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,8 +12,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import springjam.auth.SpringJamUserDetails;
 import springjam.band.Band;
 import springjam.band.BandRepository;
 import springjam.concert.Concert;
@@ -20,6 +25,7 @@ import springjam.performance.Performance;
 import springjam.performance.PerformanceRepository;
 import springjam.song.Song;
 import springjam.song.SongRepository;
+import springjam.user.RegistrationDTO;
 import springjam.user.User;
 import springjam.user.UserRepository;
 import springjam.util.PhishDownloader;
@@ -58,11 +64,22 @@ public class SpringJam {
     @Autowired
     SongRepository songRepository;
 
+    protected final Log logger = LogFactory.getLog(this.getClass());
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    Iterable<User> home() {
-        Iterable<User> users = userRepository.findAll();
-        return users;
+    User home() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if ((authentication == null) ||
+                (authentication.getPrincipal() == null) ||
+                (!(authentication.getPrincipal() instanceof SpringJamUserDetails))) {
+            logger.info("Non-authenticated user");
+            return null;
+        }
+        User user = ((SpringJamUserDetails)(authentication.getPrincipal())).getUser();
+
+        return user;
     }
 
     @RequestMapping(value = "/band", method = RequestMethod.GET)
@@ -84,17 +101,20 @@ public class SpringJam {
 
     @RequestMapping(value = "/noauth/registerUser", method = RequestMethod.POST)
     @ResponseBody
-    String registerUser(@RequestBody User user) {
+    String registerUser(@RequestBody RegistrationDTO user) {
 
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser != null) {
             return "A user with that email already exists";
         }
 
-        user.generateSalt(4);
-        user.setPassword(user.getPassword(), user.getSalt());
+        User newUser = new User();
+        newUser.setEmail(user.getEmail());
 
-        userRepository.save(user);
+        newUser.generateSalt(4);
+        newUser.setPassword(user.getPassword(), newUser.getSalt());
+
+        userRepository.save(newUser);
         return "User registered";
     }
 
@@ -115,14 +135,30 @@ public class SpringJam {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
     User currentUser() {
-        User user = userRepository.findOne(1l);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if ((authentication == null) ||
+                (authentication.getPrincipal() == null) ||
+                (!(authentication.getPrincipal() instanceof SpringJamUserDetails))) {
+            logger.info("Non-authenticated user");
+            return null;
+        }
+        User user = ((SpringJamUserDetails)(authentication.getPrincipal())).getUser();
+
         return user;
     }
 
     @RequestMapping(value = "/concert/attended/{concertId}/{attended}", method = RequestMethod.GET)
     @ResponseBody
     String toggleAttended(@PathVariable Long concertId, @PathVariable Boolean attended) {
-        User user = userRepository.findOne(1l);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if ((authentication == null) ||
+                (authentication.getPrincipal() == null) ||
+                (!(authentication.getPrincipal() instanceof SpringJamUserDetails))) {
+            logger.info("Non-authenticated user");
+            return null;
+        }
+        User user = ((SpringJamUserDetails)(authentication.getPrincipal())).getUser();
+
         Concert concert = concertRepository.findOne(concertId);
         if (concert == null) {
             return "Could not find concert";
@@ -153,7 +189,14 @@ public class SpringJam {
     @RequestMapping(value = "/song/{band}/seen")
     @ResponseBody
     List<Song> usersSeenSongs(@PathVariable Band band) {
-        User user = userRepository.findOne(1l);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if ((authentication == null) ||
+                (authentication.getPrincipal() == null) ||
+                (!(authentication.getPrincipal() instanceof SpringJamUserDetails))) {
+            logger.info("Non-authenticated user");
+            return null;
+        }
+        User user = ((SpringJamUserDetails)(authentication.getPrincipal())).getUser();
 
         List<Concert> attendedConcerts = user.getConcerts();
         List<Song> seenSongs = new ArrayList<Song>();
@@ -176,6 +219,23 @@ public class SpringJam {
         }
 
         return seenSongs;
+
+    }
+
+
+    @RequestMapping(value = "/concert/{band}/seen")
+    @ResponseBody
+    List<Concert> usersSeenConcerts(@PathVariable Band band) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if ((authentication == null) ||
+                (authentication.getPrincipal() == null) ||
+                (!(authentication.getPrincipal() instanceof SpringJamUserDetails))) {
+            logger.info("Non-authenticated user");
+            return null;
+        }
+        User user = ((SpringJamUserDetails)(authentication.getPrincipal())).getUser();
+
+        return user.getConcerts();
 
     }
 

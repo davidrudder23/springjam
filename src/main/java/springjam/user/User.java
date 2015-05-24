@@ -1,6 +1,8 @@
 package springjam.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.util.buf.HexUtils;
 import springjam.band.Band;
 import springjam.concert.Concert;
@@ -30,11 +32,11 @@ public class User {
     @JsonIgnore
     private String salt;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Band> favoriteBands;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Concert> concerts;
 
@@ -42,7 +44,10 @@ public class User {
     @JsonIgnore
     private String password;
 
-	public String getFirstName() {
+    @Transient
+    protected final Log logger = LogFactory.getLog(this.getClass());
+
+    public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {
@@ -130,9 +135,10 @@ public class User {
     }
 
     public void setPassword(String password, String salt) {
+        logger.info("Encoding password "+password);
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update((password + ":" + getSalt()).getBytes());
+            md.update(password.getBytes());
             String hashedPassword = HexUtils.toHexString(md.digest());
             setHashedPassword(hashedPassword);
         } catch (NoSuchAlgorithmException e) {

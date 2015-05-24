@@ -21,7 +21,7 @@ public class Song {
     @ManyToOne
     private Band band;
 
-    @OneToMany(mappedBy = "song")
+    @OneToMany(mappedBy = "song", fetch = FetchType.EAGER)
     List<Performance> performances;
 
 

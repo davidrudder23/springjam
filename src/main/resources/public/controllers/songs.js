@@ -1,5 +1,5 @@
 function Songs($scope, $http) {
-    $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("username")+":"+localStorage.getItem("password"));
+    $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
     $http.get('/api/song').
         error(function(data){
             window.location = "/login.html";
@@ -7,7 +7,7 @@ function Songs($scope, $http) {
         success(function(data) {
             $scope.songs = data;
         }).then(function(data) {
-            $http.get('/song/0/seen').
+            $http.get('/api/song/0/seen').
                 success(function (data) {
                     $scope.seenSongs = data;
                 }).then(function (data) {
