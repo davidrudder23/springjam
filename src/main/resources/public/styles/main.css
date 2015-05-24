@@ -4,16 +4,24 @@ body {
 
 .song-even {
     background-color: white;
+    cursor: pointer;
 }
 
 .song-odd {
     background-color: aliceblue;
+    cursor: hand;
 }
 
 .song-details {
     position: fixed;
     top: 75px;
     right: 25%;
+}
+
+.concert-details {
+    position: fixed;
+    top: 75px;
+    right: 15%;
 }
 
 .card-container.card {

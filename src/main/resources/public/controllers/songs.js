@@ -7,6 +7,8 @@ function Songs($scope, $http) {
         success(function(data) {
             $scope.songs = data;
         }).then(function(data) {
+            $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
+
             $http.get('/api/song/0/seen').
                 success(function (data) {
                     $scope.seenSongs = data;
@@ -27,7 +29,7 @@ function Songs($scope, $http) {
     $scope.sortReverse = true;
 
     $scope.showSong = function(id) {
-        $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("username")+":"+localStorage.getItem("password"));
+        $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
         $http.get("/api/song/"+id).
             success(function(data) {
                 $scope.song = data;

@@ -18,18 +18,33 @@
 <body>
 <div ng-include="'/noauth/header.html'" ng-controller="Header"></div>
 
-    <div class="container">
-        <div class="jumbotron">
-            SpringJam is a website where you can keep track of the concerts you've seen.  It allows you to keep
-            track of which songs you've seen or not seen.  Then, you can make a "bucket list" of songs you want to see.
-            For instance, I've never seen Twiddle play "Latin Tang", but I'd love to!  How do I know I've never seen it?
-            I entered all the shows I've seen into SpringJam and it told me!
-        </div>
-        <div ng-repeat="band in bands">
-            <p><b>#{{band.id}}</b> - {{band.name}}
-            </p>
-        </div>
+<div class="container">
+    <div class="jumbotron">
+        <p>SpringJam is a website where you can keep track of the concerts you've seen.  It allows you to keep
+        track of which songs you've seen or not seen.  Then, you can make a "bucket list" of songs you want to see.
+        For instance, I've never seen Twiddle play "Latin Tang", but I'd love to!  How do I know I've never seen it?
+        I entered all the shows I've seen into SpringJam and it told me!
+        </p>
+
     </div>
+
+    <div class="well" ng-repeat="band in bands | filter:!loggedIn">
+        <h3>My {{band.name}} Shows</h3>
+        <p ng-repeat="concert in band.seenConcerts">
+        {{concert.venue.name}}
+        </p>
+        <br/>
+        <p>
+        <a href="concerts.html"><button type="button" class="btn btn-primary">Select Which Shows You've Seen</button></a>
+        </p>
+    </div>
+
+    <div ng-if="!loggedIn" class="well" >
+        Creating an account allows you to record which shows you've been to, and to see the list of songs you've
+        seen or have not seen.
+    </div>
+</div>
+
 <script src="js/main.js"></script>
 </body>
 </html>

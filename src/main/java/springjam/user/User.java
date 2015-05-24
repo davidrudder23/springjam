@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class User {
@@ -101,6 +102,17 @@ public class User {
         return concerts;
     }
 
+    public List<Concert> getConcerts(Band band) {
+        logger.info("Getting concerts for band "+band);
+        if (band == null) return concerts;
+
+        List<Concert> bandsConcerts = concerts.stream()
+                .filter(c->c.getBand().equals(band))
+                .collect(Collectors.toList());
+
+        return bandsConcerts;
+    }
+
     public void setConcerts(List<Concert> concerts) {
         this.concerts = concerts;
     }
@@ -122,12 +134,7 @@ public class User {
         if (concerts == null) concerts = new ArrayList<Concert>();
         if (concert == null) return;
 
-        boolean found = false;
-        for (Concert attendedConcert: concerts) {
-            if (concert.getId().equals(attendedConcert.getId())) {
-                found = true;
-            }
-        }
+        boolean found = concerts.stream().filter(c->c.equals(concert)).findAny().isPresent();
 
         if (!found) {
             concerts.add(concert);

@@ -23,40 +23,60 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-2" ng-click="sortBy='band.name'; sortReverse = !sortReverse">
-            <strong>Band</strong>
-            <span ng-show="sortBy == 'band.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-            <span ng-show="sortBy == 'band.name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-2" ng-click="sortBy='band.name'; sortReverse = !sortReverse">
+                    <strong>Band</strong>
+                    <span ng-show="sortBy == 'band.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortBy == 'band.name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <div class="col-md-2" ng-click="sortBy='date'; sortReverse = !sortReverse">
+                    <strong>Date</strong>
+                    <span ng-show="sortBy == 'date' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortBy == 'date' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <div class="col-md-4" ng-click="sortBy='venue.name'; sortReverse = !sortReverse">
+                    <strong>Venue</strong>
+                    <span ng-show="sortBy == 'venue.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortBy == 'venue.name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <div class="col-md-2" ng-click="sortBy='attended'; sortReverse = !sortReverse">
+                    <strong>Seen</strong>
+                    <span ng-show="sortBy == 'attended' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortBy == 'attended' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+
+            </div>
+
+            <div class="hero-unit" ng-repeat="concert in concerts| orderBy:sortBy:sortReverse" ng-class-even="'song-even'" ng-class-odd="'song-odd'" ng-click="showConcert(concert.id)">
+                <div class="row">
+                    <div class="col-md-2">{{concert.band.name}}</div>
+                    <div class="col-md-2">{{concert.date | date:'yyyy-MM-dd'}}</div>
+                    <div class="col-md-4">{{concert.venue.name}} ({{concert.venue.city}}, {{concert.venue.state}})</div>
+                    <div class="col-md-2"><input type="checkbox" id="concert-attended-{{concert.id}}" ng-model="concert.attended" ng-checked="concert.attended" ng-click="toggleAttended(concert.id)"></div>
+                </div>
+                <div class="row" ng-repeat="performance in concert.performances">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">{{performance.song.name}}</div>
+                </div>
+
+            </div>
         </div>
-        <div class="col-md-2" ng-click="sortBy='date'; sortReverse = !sortReverse">
-            <strong>Date</strong>
-            <span ng-show="sortBy == 'date' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-            <span ng-show="sortBy == 'date' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-        </div>
-        <div class="col-md-4" ng-click="sortBy='venue.name'; sortReverse = !sortReverse">
-            <strong>Venue</strong>
-            <span ng-show="sortBy == 'venue.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-            <span ng-show="sortBy == 'venue.name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-        </div>
-        <div class="col-md-4" ng-click="sortBy='attended'; sortReverse = !sortReverse">
-            <strong>Did you see this show?</strong>
-            <span ng-show="sortBy == 'attended' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-            <span ng-show="sortBy == 'attended' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+        <div class="col-md-4 concert-details">
+            <div class="hero-unit" id="concert-details">
+                <div><h3>{{concert.band.name}}</h3></div>
+                <div><h4>{{concert.date | date:'yyyy-MM-dd'}}</h4></div>
+                <div><h4>{{concert.venue.name}}</h4></div>
+                <div ng-repeat="performance in concert.performances">
+                    <p>
+                    <div>{{performance.concert.venue.name}}</div>
+                    <div>{{performance.concert.date | date:'yyyy-MM-dd'}}</div>
+                    </p>
+                </div>
+            </div>
         </div>
 
-    </div>
 
-    <div class="hero-unit" ng-repeat="concert in concerts| orderBy:sortBy:sortReverse" ng-class-even="'song-even'" ng-class-odd="'song-odd'" >
-        <div class="row">
-            <div class="col-md-2">{{concert.band.name}}</div>
-            <div class="col-md-2">{{concert.date | date:'yyyy-MM-dd'}}</div>
-            <div class="col-md-4">{{concert.venue.name}} ({{concert.venue.city}}, {{concert.venue.state}})</div>
-            <div><input type="checkbox" id="concert-attended-{{concert.id}}" ng-model="concert.attended" ng-checked="concert.attended" ng-click="toggleAttended(concert.id)"></div>
-        </div>
-        <div class="row" ng-repeat="performance in concert.performances">
-            <div class="col-md-1"></div>
-            <div class="col-md-4">{{performance.song.name}}</div>
-        </div>
 
     </div>
 

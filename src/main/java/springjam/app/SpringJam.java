@@ -235,7 +235,7 @@ public class SpringJam {
         }
         User user = ((SpringJamUserDetails)(authentication.getPrincipal())).getUser();
 
-        return user.getConcerts();
+        return user.getConcerts(band);
 
     }
 
@@ -249,7 +249,7 @@ public class SpringJam {
 
     }
 
-    @RequestMapping(value = "/phishdownloader/{date}", method = RequestMethod.GET)
+    @RequestMapping(value = "/noauth/phishdownloader/{date}", method = RequestMethod.GET)
     @ResponseBody
     String toggleAttended(@PathVariable String date) {
         PhishDownloader phishDownloader = new PhishDownloader();

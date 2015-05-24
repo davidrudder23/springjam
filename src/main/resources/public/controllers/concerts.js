@@ -19,7 +19,6 @@ function Concerts($scope, $http) {
 
                         angular.forEach($scope.seenConcerts, function (attendedConcert, attendedConcertId) {
                             if (concert.id == attendedConcert.id) {
-                                console.log($scope.user.firstName+" "+$scope.user.lastName+" attended "+concert.band.name);
                                 concert.attended=true;
                             }
                         })
@@ -41,5 +40,13 @@ function Concerts($scope, $http) {
                     });
             }
         });
+    }
+
+    $scope.showConcert = function(concertId) {
+        $http
+            .get("/api/concert/"+concertId)
+            .success(function(data){
+               $scope.concert = data;
+            });
     }
 }

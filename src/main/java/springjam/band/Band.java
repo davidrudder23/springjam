@@ -33,7 +33,13 @@ public class Band {
 	}
 
 	public String toString() {
-		return name;
+		return "#"+id+" - "+name;
 	}
+
+    public boolean equals(Object other) {
+        if (!(other instanceof Band)) return false;
+
+        return id == ((Band)other).getId();
+    }
 	
 }
