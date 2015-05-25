@@ -99,6 +99,29 @@ public class SpringJam {
         return band;
     }
 
+    @RequestMapping(value = "/band/{id}/concerts", method = RequestMethod.GET)
+    @ResponseBody
+    Iterable<Concert> bandsConcerts(@PathVariable Long id) {
+        Band band = bandRepository.findOne(id);
+        logger.info("looking for concerts for band "+band);
+        if (band == null) return null;
+
+        Iterable<Concert> concerts = concertRepository.findByBand(band);
+        logger.info ("Found "+concerts);
+        return concerts;
+    }
+
+    @RequestMapping(value = "/band/{id}/songs", method = RequestMethod.GET)
+    @ResponseBody
+    Iterable<Song> bandsSongs(@PathVariable Long id) {
+        Band band = bandRepository.findOne(id);
+        logger.info("looking for songs for band "+band);
+        if (band == null) return null;
+
+        Iterable<Song> songs = songRepository.findByBand(band);
+        return songs;
+    }
+
 
     @RequestMapping(value = "/noauth/registerUser", method = RequestMethod.POST)
     @ResponseBody

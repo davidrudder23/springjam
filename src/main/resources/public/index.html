@@ -25,17 +25,21 @@
         For instance, I've never seen Twiddle play "Latin Tang", but I'd love to!  How do I know I've never seen it?
         I entered all the shows I've seen into SpringJam and it told me!
         </p>
+        <p>
+            <a href="concerts.html"><button type="button" class="btn btn-primary">Edit Which {{ selectedBand.name }} Shows You've Seen</button></a>
+        </p>
 
     </div>
 
     <div class="well" ng-repeat="band in bands | filter:!loggedIn">
-        <h3>My {{band.name}} Shows</h3>
+        <h3>
+            <button type="button" class="btn {{ selectedBand.id==band.id? 'btn-success' :  'btn-primary' }}" ng-click="selectBand(band)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+            My {{band.name}} Shows</h3>
         <p ng-repeat="concert in band.seenConcerts">
         {{concert.venue.name}}
         </p>
         <br/>
         <p>
-        <a href="concerts.html"><button type="button" class="btn btn-primary">Select Which Shows You've Seen</button></a>
         </p>
     </div>
 

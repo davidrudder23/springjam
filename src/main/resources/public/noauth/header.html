@@ -26,9 +26,11 @@
             <li>
                 <a href="songs.html">Songs</a>
             </li>
+
          </ul>
 
          <ul class="nav navbar-nav navbar-right">
+            <li><a href="bands.html">(Currently looking at {{selectedBand.name}})</a></li>
             <li ng-if="!loggedIn" >
                 <a href="login.html">Login</a>
             </li>

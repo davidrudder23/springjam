@@ -1,18 +1,18 @@
-function Concerts($scope, $http) {
-    // Handle login
+function Concerts($scope, $http, $rootScope) {
+
+    $rootScope.$watch('selectedBand', function() {
     $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
     $http
-        .get('/api/concert').
+        .get('/api/band/'+$rootScope.selectedBand.id+'/concerts').
         error(function(data) {
            window.location = "/login.html";
         }).
         success(function(data) {
             $scope.concerts = data;
         }).then(function(data) {
-            $http.get('/api/concert/0/seen').
+            $http.get('/api/concert/'+$rootScope.selectedBand.id+'/seen').
                 success(function (data) {
                     $scope.seenConcerts= data;
-                }).then(function (data) {
                     console.log($scope.concerts);
                     angular.forEach($scope.concerts, function (concert, concertId) {
                         concert.attended = false;
@@ -28,6 +28,8 @@ function Concerts($scope, $http) {
 
     $scope.sortBy = 'seen';
     $scope.sortReverse = true;
+    });
+
 
     $scope.toggleAttended = function(attendedConcertId) {
         angular.forEach($scope.concerts, function (concert, concertId) {

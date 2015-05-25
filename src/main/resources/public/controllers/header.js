@@ -1,14 +1,35 @@
 function Header($scope, $http, $rootScope) {
+
     $http.get('/api/user')
-        .success(function(data) {
-            $scope.user= data;
+        .success(function (data) {
+            $scope.user = data;
             $scope.loggedIn = true;
             $rootScope.loggedIn = true;
-            console.log("logged in");
         })
-        .error(function(data){
+        .error(function (data) {
             $scope.loggedIn = false;
-            console.log("!logged in");
         })
     ;
+
+    $http.get('/api/band')
+        .success(function (data) {
+            $scope.bands = data;
+
+            bandObj = localStorage.getItem("selectedBand");
+
+            if (angular.isUndefined(bandObj) || bandObj==null) {
+                localStorage.setItem("selectedBand", JSON.stringify($scope.bands[0]));
+                bandObj = JSON.stringify($scope.bands[0]);
+            }
+
+            $rootScope.selectedBand = JSON.parse(bandObj);
+        });
+
+
+    $rootScope.selectBand = function(band) {
+        localStorage.setItem("selectedBand", JSON.stringify(band));
+        console.log("Setting selected band 3");
+        $rootScope.selectedBand = band;
+
+    };
 }

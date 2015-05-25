@@ -1,32 +1,34 @@
-function Songs($scope, $http) {
-    $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
-    $http.get('/api/song').
-        error(function(data){
-            window.location = "/login.html";
-        }).
-        success(function(data) {
-            $scope.songs = data;
-        }).then(function(data) {
-            $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
+function Songs($scope, $http, $rootScope) {
+    $rootScope.$watch('selectedBand', function() {
+        $http.defaults.headers.common.Authorization = 'Basic ' + btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"));
+        $http.get('/api/band/' + $rootScope.selectedBand.id + '/songs').
+            error(function (data) {
+                window.location = "/login.html";
+            }).
+            success(function (data) {
+                $scope.songs = data;
+            }).then(function (data) {
+                $http.defaults.headers.common.Authorization = 'Basic ' + btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"));
 
-            $http.get('/api/song/0/seen').
-                success(function (data) {
-                    $scope.seenSongs = data;
-                }).then(function (data) {
-                    angular.forEach($scope.songs, function (song, idx) {
-                        song.seen = false;
+                $http.get('/api/song/0/seen').
+                    success(function (data) {
+                        $scope.seenSongs = data;
+                    }).then(function (data) {
+                        angular.forEach($scope.songs, function (song, idx) {
+                            song.seen = false;
 
-                        angular.forEach($scope.seenSongs, function (seenSong, songIdx) {
-                            if (song.id == seenSong.id) {
-                                song.seen=true;
-                            }
-                        })
-                    });
-                })
-        });
+                            angular.forEach($scope.seenSongs, function (seenSong, songIdx) {
+                                if (song.id == seenSong.id) {
+                                    song.seen = true;
+                                }
+                            })
+                        });
+                    })
+            });
 
-    $scope.sortBy = 'seen';
-    $scope.sortReverse = true;
+        $scope.sortBy = 'seen';
+        $scope.sortReverse = true;
+    });
 
     $scope.showSong = function(id) {
         $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
