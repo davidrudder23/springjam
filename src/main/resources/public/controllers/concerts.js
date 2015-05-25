@@ -47,6 +47,13 @@ function Concerts($scope, $http) {
             .get("/api/concert/"+concertId)
             .success(function(data){
                $scope.concert = data;
+            }).then(function() {
+                angular.forEach($scope.concert.performances, function (performance, performanceId) {
+                    $http.get("/api/song/"+performance.song)
+                        .success(function(data){
+                            performance.song=data;
+                        });
+                });
             });
     }
 }

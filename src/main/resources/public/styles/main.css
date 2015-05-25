@@ -22,6 +22,8 @@ body {
     position: fixed;
     top: 75px;
     right: 15%;
+    overflow: auto;
+    max-height: 100%;
 }
 
 .card-container.card {

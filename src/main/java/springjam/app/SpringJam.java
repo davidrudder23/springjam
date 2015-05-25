@@ -29,6 +29,7 @@ import springjam.user.RegistrationDTO;
 import springjam.user.User;
 import springjam.user.UserRepository;
 import springjam.util.PhishDownloader;
+import springjam.util.TwiddleDownloader;
 import springjam.venue.Venue;
 import springjam.venue.VenueRepository;
 
@@ -149,7 +150,7 @@ public class SpringJam {
 
     @RequestMapping(value = "/concert/attended/{concertId}/{attended}", method = RequestMethod.GET)
     @ResponseBody
-    String toggleAttended(@PathVariable Long concertId, @PathVariable Boolean attended) {
+    String toggleAttended(@PathVariable("concertId") long concertId, @PathVariable("attended") Boolean attended) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if ((authentication == null) ||
                 (authentication.getPrincipal() == null) ||
@@ -251,7 +252,7 @@ public class SpringJam {
 
     @RequestMapping(value = "/noauth/phishdownloader/{date}", method = RequestMethod.GET)
     @ResponseBody
-    String toggleAttended(@PathVariable String date) {
+    String phishDownloader(@PathVariable String date) {
         PhishDownloader phishDownloader = new PhishDownloader();
         phishDownloader.setBandRepository(bandRepository);
         phishDownloader.setVenueRepository(venueRepository);
@@ -262,6 +263,17 @@ public class SpringJam {
         phishDownloader.setDate(date);
 
         phishDownloader.importShow();
+        return "";
+    }
+
+    @RequestMapping(value = "/noauth/twiddledownloader", method = RequestMethod.GET)
+    @ResponseBody
+    String twiddleDownloader() {
+        new TwiddleDownloader().download(bandRepository,
+                songRepository,
+                performanceRepository,
+                concertRepository,
+                venueRepository);
         return "";
     }
 

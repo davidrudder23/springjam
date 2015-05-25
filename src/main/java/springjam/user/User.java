@@ -37,7 +37,7 @@ public class User {
     @JsonIgnore
     private List<Band> favoriteBands;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Concert> concerts;
 

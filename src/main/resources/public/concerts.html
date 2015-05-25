@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app ng-controller="Concerts">
 <head>
-    <title>SpringJam Registration</title>
+    <title>SpringJam Shows</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
     <script src="/controllers/header.js"></script>
     <script src="/controllers/concerts.js"></script>
@@ -30,7 +30,7 @@
                     <span ng-show="sortBy == 'band.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                     <span ng-show="sortBy == 'band.name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
                 </div>
-                <div class="col-md-2" ng-click="sortBy='date'; sortReverse = !sortReverse">
+                <div class="col-md-3" ng-click="sortBy='date'; sortReverse = !sortReverse">
                     <strong>Date</strong>
                     <span ng-show="sortBy == 'date' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
                     <span ng-show="sortBy == 'date' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
@@ -51,8 +51,8 @@
             <div class="hero-unit" ng-repeat="concert in concerts| orderBy:sortBy:sortReverse" ng-class-even="'song-even'" ng-class-odd="'song-odd'" ng-click="showConcert(concert.id)">
                 <div class="row">
                     <div class="col-md-2">{{concert.band.name}}</div>
-                    <div class="col-md-2">{{concert.date | date:'yyyy-MM-dd'}}</div>
-                    <div class="col-md-4">{{concert.venue.name}} ({{concert.venue.city}}, {{concert.venue.state}})</div>
+                    <div class="col-md-3">{{concert.date | date:'yyyy-MM-dd'}}</div>
+                    <div class="col-md-4">{{concert.venue.name}}</div>
                     <div class="col-md-2"><input type="checkbox" id="concert-attended-{{concert.id}}" ng-model="concert.attended" ng-checked="concert.attended" ng-click="toggleAttended(concert.id)"></div>
                 </div>
                 <div class="row" ng-repeat="performance in concert.performances">
@@ -67,10 +67,9 @@
                 <div><h3>{{concert.band.name}}</h3></div>
                 <div><h4>{{concert.date | date:'yyyy-MM-dd'}}</h4></div>
                 <div><h4>{{concert.venue.name}}</h4></div>
-                <div ng-repeat="performance in concert.performances">
+                <div ng-repeat="performance in concert.performances | orderBy:performance.songOrder">
                     <p>
-                    <div>{{performance.concert.venue.name}}</div>
-                    <div>{{performance.concert.date | date:'yyyy-MM-dd'}}</div>
+                    <div>{{performance.song.name}}</div>
                     </p>
                 </div>
             </div>
