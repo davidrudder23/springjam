@@ -5,7 +5,7 @@ function Concerts($scope, $http, $rootScope) {
     $http
         .get('/api/band/'+$rootScope.selectedBand.id+'/concerts').
         error(function(data) {
-           window.location = "/login.html";
+           window.location = "/auth/login.html";
         }).
         success(function(data) {
             $scope.concerts = data;

@@ -4,19 +4,19 @@
     <title>{{twiddle.name}}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="/controllers/header.js"></script>
-    <script src="/controllers/index.js"></script>
+    <script src="/common/header.js"></script>
+    <script src="/index.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/common/main.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 </head>
 
 <body>
-<div ng-include="'/noauth/header.html'" ng-controller="Header"></div>
+<div ng-include="'/common/header.html'" ng-controller="Header"></div>
 
 <div class="container">
     <div class="jumbotron">
@@ -26,8 +26,8 @@
         I entered all the shows I've seen into SpringJam and it told me!
         </p>
         <p>
-            <a href="concerts.html" ng-if="loggedIn"><button type="button" class="btn btn-primary">Edit Which {{ selectedBand.name }} Shows You've Seen</button></a>
-            <a href="login.html" ng-if="!loggedIn"><button type="button" class="btn btn-primary">Login to start tracking your shows!</button></a>
+            <a href="/concert/concerts.html" ng-if="loggedIn"><button type="button" class="btn btn-primary">Edit Which {{ selectedBand.name }} Shows You've Seen</button></a>
+            <a href="/auth/login.html" ng-if="!loggedIn"><button type="button" class="btn btn-primary">Login to start tracking your shows!</button></a>
         </p>
 
     </div>
@@ -46,6 +46,6 @@
 
 </div>
 
-<script src="js/main.js"></script>
+<script src="common/main.js"></script>
 </body>
 </html>

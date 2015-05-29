@@ -3,12 +3,12 @@
 <head>
     <title>SpringJam Registration</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-    <script src="/controllers/header.js"></script>
-    <script src="/controllers/bands.js"></script>
+    <script src="/common/header.js"></script>
+    <script src="/band/bands.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/common/main.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div ng-include="'/noauth/header.html'" ng-controller="Header"></div>
+<div ng-include="'/common/header.html'" ng-controller="Header"></div>
 
 
 <div class="container">
@@ -27,7 +27,7 @@
             <p>Select which band you want to look at.
             </p>
             <p>
-                <a href="concerts.html"><button type="button" class="btn btn-primary">Edit Which {{ selectedBand.name }} Shows You've Seen</button></a>
+                <a href="/concert/concerts.html"><button type="button" class="btn btn-primary">Edit Which {{ selectedBand.name }} Shows You've Seen</button></a>
             </p>
         </div>
 

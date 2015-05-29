@@ -13,24 +13,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li><a href="../index.html">Home</a></li>
 
-            <li><a href="bands.html">Bands</a>
-                <ul class="dropdown-menu">
-                    <li ng-repeat="band in bands"><a href="/api/band/{{band.id}}">{{band.name}}</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="concerts.html">Shows</a>
-            </li>
-            <li>
-                <a href="songs.html">Songs</a>
-            </li>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/band/bands.html">Bands</a></li>
+            <li><a href="/concert/concerts.html">Shows</a></li>
+            <li><a href="/song/songs.html">Songs</a></li>
 
          </ul>
 
          <ul class="nav navbar-nav navbar-right">
-            <li ng-if="loggedIn"><a href="bands.html">(Currently looking at {{selectedBand.name}})</a></li>
+            <li ng-if="loggedIn"><a href="/band/bands.html">(Currently looking at {{selectedBand.name}})</a></li>
             <li ng-if="!loggedIn" >
                 <a href="login.html">Login</a>
             </li>

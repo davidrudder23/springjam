@@ -3,7 +3,7 @@ function Bands($scope, $http) {
 
     $http.get("/api/band")
         .error(function(data){
-          window.location = "/login.html";
+          window.location = "/auth/login.html";
         })
         .success(function(data){
             $scope.bands=data;
