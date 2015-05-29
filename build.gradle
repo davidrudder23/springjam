@@ -20,7 +20,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: org.springframework.boot.gradle.SpringBootPlugin
-mainClassName = "springjam.app.SpringJam"
+mainClassName = "springjam.SpringJam"
 
 jar {
 	baseName = 'springjam'
@@ -44,6 +44,7 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.jsoup:jsoup:1.7.2")
+    compile("io.dropwizard.metrics:metrics-core")
 	runtime "mysql:mysql-connector-java:5.1.27"
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 }

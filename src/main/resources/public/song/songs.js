@@ -3,7 +3,7 @@ function Songs($scope, $http, $rootScope) {
         $http.defaults.headers.common.Authorization = 'Basic ' + btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"));
         $http.get('/api/band/' + $rootScope.selectedBand.id + '/songs').
             error(function (data) {
-                window.location = "/auth.login.html";
+                window.location = "/auth/login.html";
             }).
             success(function (data) {
                 $scope.songs = data;

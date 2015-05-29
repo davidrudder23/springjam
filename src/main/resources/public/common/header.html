@@ -24,10 +24,10 @@
          <ul class="nav navbar-nav navbar-right">
             <li ng-if="loggedIn"><a href="/band/bands.html">(Currently looking at {{selectedBand.name}})</a></li>
             <li ng-if="!loggedIn" >
-                <a href="login.html">Login</a>
+                <a href="/auth/login.html">Login</a>
             </li>
             <li ng-if="loggedIn">
-                <a href="logout.html">Logout</a>
+                <a href="/auth/logout.html">Logout</a>
             </li>
             <li><span style="padding: 10px"></span></li>
         </ul>

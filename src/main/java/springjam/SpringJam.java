@@ -1,4 +1,4 @@
-package springjam.app;
+package springjam;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,10 +8,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +30,6 @@ import springjam.util.TwiddleDownloader;
 import springjam.venue.Venue;
 import springjam.venue.VenueRepository;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +37,8 @@ import java.util.List;
 @SpringBootApplication
 @RestController
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song", "springjam.venue" })
-@ComponentScan(basePackages = { "springjam.user", "springjam.band", "springjam.concert", "springjam.performance", "springjam.song", "springjam.venue", "springjam.auth" })
+@EnableJpaRepositories(basePackages = { "springjam" })
+@ComponentScan(basePackages = { "springjam" })
 @EntityScan(basePackageClasses={ Band.class, User.class, Concert.class, Song.class, Performance.class, Venue.class})
 @RequestMapping(value = "/api")
 public class SpringJam {
