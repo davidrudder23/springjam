@@ -23,6 +23,9 @@ function Header($scope, $http, $rootScope) {
             }
 
             $rootScope.selectedBand = JSON.parse(bandObj);
+        })
+        .error(function(data) {
+            $rootScope.selectedBand = "";
         });
 
 

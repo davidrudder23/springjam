@@ -44,7 +44,7 @@ public class TwiddleDownloader {
             List<Concert> concerts = new ArrayList<Concert>();
 
             logger.info("in twiddle downloader");
-            for (int year = 2005; year <= 2015; year++) {
+            for (int year = 2015; year <= 2015; year++) {
                 Document doc = Jsoup.connect("http://www.utwiddle.net/"+year+".html").get();
 
                 Elements shows = doc.select(".popbox");
