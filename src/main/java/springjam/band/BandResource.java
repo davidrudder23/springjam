@@ -50,7 +50,6 @@ public class BandResource {
         if (band == null) return null;
 
         Iterable<Concert> concerts = concertRepository.findByBand(band);
-        logger.info ("Found "+concerts);
         return concerts;
     }
 
@@ -62,7 +61,6 @@ public class BandResource {
         if (band == null) return null;
 
         Iterable<Concert> concerts = concertRepository.findByBandAndYear(band, year);
-        logger.info ("Found "+concerts);
         return concerts;
     }
 

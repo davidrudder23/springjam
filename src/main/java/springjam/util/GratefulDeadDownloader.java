@@ -59,7 +59,7 @@ public class GratefulDeadDownloader {
     }
 
     private Optional<Venue> getVenueFromTitle(String title, VenueRepository venueRepository) {
-        if (title.indexOf(",")<0) {
+        if (!title.contains(",")) {
             return Optional.empty();
         }
 
@@ -142,7 +142,7 @@ public class GratefulDeadDownloader {
                 try {
                     File file = files[fileNum];
                     Optional<Date> optionalDate = getDateFromFilename(file.getName());
-                    if (!optionalDate.isPresent()) continue;;
+                    if (!optionalDate.isPresent()) continue;
 
                     Date date = optionalDate.get();
 
@@ -150,7 +150,7 @@ public class GratefulDeadDownloader {
                     String title = in.readLine();
 
                     Optional<Venue> optionalVenue = getVenueFromTitle(title, venueRepository);
-                    if (!optionalVenue.isPresent()) continue;;
+                    if (!optionalVenue.isPresent()) continue;
 
                     Venue venue = optionalVenue.get();
 
@@ -176,7 +176,7 @@ public class GratefulDeadDownloader {
                             logger.info("Skipping song "+songTitle+" because it starts with a star");
                             songTitle = getNextLine(in);
                             continue;
-                        };
+                        }
 
                         Optional<Song> optionalSong = getSong(band, songTitle, songRepository);
                         if (!optionalSong.isPresent()) {

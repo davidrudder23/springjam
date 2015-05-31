@@ -1,51 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="410a74a2-eacc-489b-9b33-f17dfe60ac76" name="Default" comment="refactoring the directory layout, so it's now organized by functional area.  also started on performance concerns">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/springjam/auth/AuthResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/springjam/concert/ConcertResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/springjam/MonitoringConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/springjam/performance/PerformanceResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/springjam/song/SongResource.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_aop_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_aspects_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_beans_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_context_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_core_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_expression_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_jdbc_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_orm_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_test_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_tx_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_web_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_webmvc_4_2_0_BUILD_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__tomcat_embed_core_8_0_22.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__tomcat_embed_el_8_0_22.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__tomcat_embed_logging_juli_8_0_22.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__tomcat_embed_websocket_8_0_22.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__tomcat_jdbc_8_0_22.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__tomcat_juli_8_0_22.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/concert/Concert.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/concert/Concert.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/concert/ConcertRepository.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/concert/ConcertRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_autoconfigure_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_autoconfigure_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_aop_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_aop_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_data_jpa_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_data_jpa_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_jdbc_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_jdbc_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_logging_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_logging_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_test_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_test_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_tomcat_1_3_0_BUILD_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_boot_starter_tomcat_1_3_0_BUILD_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/performance/Performance.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/performance/Performance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/song/Song.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/song/Song.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/SpringJam.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/SpringJam.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application.properties" afterPath="$PROJECT_DIR$/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/concert/concerts.js" afterPath="$PROJECT_DIR$/src/main/resources/public/concert/concerts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/song/songs.js" afterPath="$PROJECT_DIR$/src/main/resources/public/song/songs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/springjam.iml" afterPath="$PROJECT_DIR$/springjam.iml" />
+    <list default="true" id="410a74a2-eacc-489b-9b33-f17dfe60ac76" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="springjam.iws" />
@@ -104,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BandResource.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BandResource.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="1290">
-              <caret line="63" column="62" selection-start-line="63" selection-start-column="62" selection-end-line="63" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.87112564" vertical-offset="411" max-vertical-offset="1260">
+              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,22 +84,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.properties" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="application.properties" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02446982" vertical-offset="0" max-vertical-offset="613">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
               <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Song.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/springjam/song/Song.java">
+      <file leaf-file-name="GratefulDeadDownloader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="111" max-vertical-offset="3090">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -782,7 +742,6 @@
         <option value="$PROJECT_DIR$/src/main/java/springjam/app/SpringJam.java" />
         <option value="$PROJECT_DIR$/src/main/resources/public/common/header.html" />
         <option value="$PROJECT_DIR$/src/main/java/springjam/auth/SpringJamSecurityConfigurator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java" />
         <option value="$PROJECT_DIR$/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/springjam/MetricsConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/springjam/MonitoringConfig.java" />
@@ -797,9 +756,10 @@
         <option value="$PROJECT_DIR$/src/main/java/springjam/concert/ConcertResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/springjam/performance/Performance.java" />
         <option value="$PROJECT_DIR$/src/main/resources/public/song/songs.js" />
-        <option value="$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/springjam/concert/ConcertRepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/public/concert/concerts.js" />
+        <option value="$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java" />
       </list>
     </option>
   </component>
@@ -1618,7 +1578,7 @@
       <workItem from="1432503841889" duration="180000" />
       <workItem from="1432504026933" duration="3841000" />
       <workItem from="1432520122398" duration="14909000" />
-      <workItem from="1432598904371" duration="16381000" />
+      <workItem from="1432598904371" duration="16571000" />
     </task>
     <task id="LOCAL-00001" summary="better directory layout. some more angular work">
       <created>1431193975603</created>
@@ -1680,11 +1640,15 @@
       <created>1432939554466</created>
       <updated>1432939554466</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="refactoring the directory layout, so it's now organized by functional area.  also started on performance concerns">
+      <created>1433046409312</created>
+      <updated>1433046409312</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155389000" />
+    <option name="totallyTimeSpent" value="155579000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -1999,16 +1963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1694" max-vertical-offset="3090">
-          <caret line="169" column="37" selection-start-line="169" selection-start-column="37" selection-end-line="169" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="1140">
@@ -2140,16 +2094,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="1290">
-          <caret line="63" column="62" selection-start-line="63" selection-start-column="62" selection-end-line="63" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/springjam/concert/ConcertRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
@@ -2170,9 +2114,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02446982" vertical-offset="0" max-vertical-offset="613">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="111" max-vertical-offset="3090">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.87112564" vertical-offset="411" max-vertical-offset="1260">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
