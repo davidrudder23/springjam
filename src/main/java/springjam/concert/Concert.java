@@ -1,6 +1,7 @@
 package springjam.concert;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import springjam.performance.Performance;
@@ -30,7 +31,7 @@ public class Concert {
     Venue venue;
 
     @OneToMany(mappedBy = "concert", fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonIgnore
     List<Performance> performances;
 
     Date date;

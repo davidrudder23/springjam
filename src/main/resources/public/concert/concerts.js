@@ -1,33 +1,35 @@
 function Concerts($scope, $http, $rootScope) {
 
     $rootScope.$watch('selectedBand', function() {
-    $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
-    $http
-        .get('/api/band/'+$rootScope.selectedBand.id+'/concerts').
-        error(function(data) {
-           window.location = "/auth/login.html";
-        }).
-        success(function(data) {
-            $scope.concerts = data;
-        }).then(function(data) {
-            $http.get('/api/concert/'+$rootScope.selectedBand.id+'/seen').
-                success(function (data) {
-                    $scope.seenConcerts= data;
-                    console.log($scope.concerts);
-                    angular.forEach($scope.concerts, function (concert, concertId) {
-                        concert.attended = false;
+        if (!angular.isDefined($rootScope.selectedBand)) {
+            return;
+        }
+        $http.defaults.headers.common.Authorization = 'Basic '+btoa(localStorage.getItem("email")+":"+localStorage.getItem("password"));
+        $http
+            .get('/api/band/'+$rootScope.selectedBand.id+'/concerts').
+            error(function(data) {
+               window.location = "/auth/login.html";
+            }).
+            success(function(data) {
+                $scope.concerts = data;
+                $http.get('/api/concert/'+$rootScope.selectedBand.id+'/seen').
+                    success(function (data) {
+                        $scope.seenConcerts= data;
+                        console.log($scope.concerts);
+                        angular.forEach($scope.concerts, function (concert, concertId) {
+                            concert.attended = false;
 
-                        angular.forEach($scope.seenConcerts, function (attendedConcert, attendedConcertId) {
-                            if (concert.id == attendedConcert.id) {
-                                concert.attended=true;
-                            }
-                        })
-                    });
-                })
-        });
+                            angular.forEach($scope.seenConcerts, function (attendedConcert, attendedConcertId) {
+                                if (concert.id == attendedConcert.id) {
+                                    concert.attended=true;
+                                }
+                            })
+                        });
+                    })
+            });
 
-    $scope.sortBy = 'seen';
-    $scope.sortReverse = true;
+        $scope.sortBy = 'seen';
+        $scope.sortReverse = true;
     });
 
 

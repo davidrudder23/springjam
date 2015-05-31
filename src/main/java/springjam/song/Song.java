@@ -1,5 +1,6 @@
 package springjam.song;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import springjam.performance.Performance;
 import springjam.band.Band;
 
@@ -21,7 +22,8 @@ public class Song {
     @ManyToOne
     private Band band;
 
-    @OneToMany(mappedBy = "song", fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "song", fetch = FetchType.LAZY)
     List<Performance> performances;
 
 

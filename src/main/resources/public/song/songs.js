@@ -1,5 +1,9 @@
 function Songs($scope, $http, $rootScope) {
     $rootScope.$watch('selectedBand', function() {
+        if (!angular.isDefined($rootScope.selectedBand)) {
+            return;
+        }
+        console.log($rootScope.selectedBand);
         $http.defaults.headers.common.Authorization = 'Basic ' + btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"));
         $http.get('/api/band/' + $rootScope.selectedBand.id + '/songs').
             error(function (data) {
@@ -7,9 +11,6 @@ function Songs($scope, $http, $rootScope) {
             }).
             success(function (data) {
                 $scope.songs = data;
-            }).then(function (data) {
-                $http.defaults.headers.common.Authorization = 'Basic ' + btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"));
-
                 $http.get('/api/song/0/seen').
                     success(function (data) {
                         $scope.seenSongs = data;
@@ -35,16 +36,18 @@ function Songs($scope, $http, $rootScope) {
         $http.get("/api/song/"+id).
             success(function(data) {
                 $scope.song = data;
-            }).then(function() {
-                console.log($scope.song);
-                angular.forEach($scope.song.performances, function (performance, idx) {
-                    console.log(performance);
-                    console.log("Looking for concert "+performance.concert);
-                    $http.get("/api/concert/" + performance.concert).
-                        success(function (data) {
-                            performance.concert = data;
+                $http.get("/api/performance/"+id).
+                    success(function(data) {
+                        $scope.song.performances = data;
+                        angular.forEach($scope.song.performances, function (performance, idx) {
+                            console.log(performance);
+                            console.log("Looking for concert " + performance.concert);
+                            $http.get("/api/concert/" + performance.concert.id).
+                                success(function (data) {
+                                    performance.concert = data;
+                                });
                         });
-                });
+                    });
             });
     }
 }

@@ -16,8 +16,6 @@ public class Performance {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-    @JsonIdentityReference(alwaysAsId=true) // otherwise first ref as POJO, others as id
     @ManyToOne
     private Concert concert;
 
