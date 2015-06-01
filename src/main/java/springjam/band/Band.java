@@ -1,7 +1,17 @@
 package springjam.band;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import springjam.concert.Concert;
 
+import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+@Configurable
 @Entity
 public class Band {
     @Id
@@ -9,6 +19,10 @@ public class Band {
     private long id;
     
     String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "band")
+    List<Concert> concerts;
 
     public Band() { }
     

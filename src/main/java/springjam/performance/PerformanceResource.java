@@ -21,10 +21,19 @@ public class PerformanceResource {
     @Autowired
     PerformanceRepository performanceRepository;
 
-    @RequestMapping(value = "/{song}")
+    @RequestMapping(value = "/song/{song}")
     @ResponseBody
     Iterable<Performance> performances(@PathVariable Song song) {
         Iterable<Performance> performances = performanceRepository.findBySong(song);
+
+        return performances;
+
+    }
+
+    @RequestMapping(value = "/concert/{concert}")
+    @ResponseBody
+    Iterable<Performance> performances(@PathVariable Concert concert) {
+        Iterable<Performance> performances = performanceRepository.findByConcert(concert);
 
         return performances;
 

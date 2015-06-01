@@ -34,6 +34,8 @@ public class Concert {
     @JsonIgnore
     List<Performance> performances;
 
+    String source;
+
     Date date;
 
     public Long getId() {
@@ -66,6 +68,14 @@ public class Concert {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public List<Performance> getPerformances() {

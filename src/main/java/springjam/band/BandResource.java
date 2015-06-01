@@ -9,6 +9,8 @@ import springjam.concert.ConcertRepository;
 import springjam.song.Song;
 import springjam.song.SongRepository;
 
+import java.util.List;
+
 /**
  * Created by drig on 5/30/15.
  */
@@ -39,7 +41,19 @@ public class BandResource {
     Band band(@PathVariable String name) {
         System.out.println("getting band " + name);
         Band band = bandRepository.findByName(name);
+
+        if (band == null) {
+            band = bandRepository.findOne(Long.parseLong(name));
+        }
         return band;
+    }
+
+    @RequestMapping(value = "/{id}/yearsplayed", method = RequestMethod.GET)
+    @ResponseBody
+    List<Integer> yearsPlayed(@PathVariable Long id) {
+        Band band = bandRepository.findOne(id);
+
+        return bandRepository.getYearsPlayed(band);
     }
 
     @RequestMapping(value = "/{id}/concerts", method = RequestMethod.GET)

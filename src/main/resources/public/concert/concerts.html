@@ -25,6 +25,12 @@
     <div class="row">
         <div class="col-md-6">
             <div class="row">
+                <ul class="pagination">
+                    <li ng-repeat="year in yearsPlayed" ng-class="{active: year==currentYear}"><a href="#" ng-click="setYear(year)">{{year}}</a></li>
+                </ul>
+            </div>
+
+            <div class="row">
                 <div class="col-md-2" ng-click="sortBy='band.name'; sortReverse = !sortReverse">
                     <strong>Band</strong>
                     <span ng-show="sortBy == 'band.name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
@@ -61,6 +67,13 @@
                 </div>
 
             </div>
+
+            <div class="row">
+                <ul class="pagination">
+                    <li ng-repeat="year in yearsPlayed" ng-class="{active: year==currentYear}"><a href="#" ng-click="setYear(year)">{{year}}</a></li>
+                </ul>
+            </div>
+
         </div>
         <div class="col-md-4 concert-details">
             <div class="hero-unit" id="concert-details">
@@ -74,9 +87,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
 </div>
