@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="410a74a2-eacc-489b-9b33-f17dfe60ac76" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/band/Band.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/band/Band.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/band/BandRepository.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/band/BandRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/band/BandResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/concert/Concert.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/concert/Concert.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/performance/PerformanceResource.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/performance/PerformanceResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/springjam/util/TwiddleDownloader.java" afterPath="$PROJECT_DIR$/src/main/java/springjam/util/TwiddleDownloader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/concert/concerts.html" afterPath="$PROJECT_DIR$/src/main/resources/public/concert/concerts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/concert/concerts.js" afterPath="$PROJECT_DIR$/src/main/resources/public/concert/concerts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="springjam.iws" />
@@ -56,10 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="concerts.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="concerts.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/public/concert/concerts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47244096" vertical-offset="0" max-vertical-offset="1320">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1320">
               <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
               <folding />
             </state>
@@ -76,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GratefulDeadDownloader.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GratefulDeadDownloader.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3090">
-              <caret line="136" column="22" selection-start-line="136" selection-start-column="22" selection-end-line="136" selection-end-column="22" />
+            <state vertical-scroll-proportion="-0.54330707" vertical-offset="2430" max-vertical-offset="3090">
+              <caret line="139" column="43" selection-start-line="139" selection-start-column="43" selection-end-line="139" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1536,7 +1528,7 @@
       <workItem from="1432503841889" duration="180000" />
       <workItem from="1432504026933" duration="3841000" />
       <workItem from="1432520122398" duration="14909000" />
-      <workItem from="1432598904371" duration="27545000" />
+      <workItem from="1432598904371" duration="29002000" />
     </task>
     <task id="LOCAL-00001" summary="better directory layout. some more angular work">
       <created>1431193975603</created>
@@ -1606,11 +1598,15 @@
       <created>1433046597213</created>
       <updated>1433046597213</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="pagination for shows works">
+      <created>1433121227394</created>
+      <updated>1433121227394</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166553000" />
+    <option name="totallyTimeSpent" value="168010000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -1634,7 +1630,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299595" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1675,7 +1671,8 @@
     <MESSAGE value="refactoring the directory layout, so it's now organized by functional area" />
     <MESSAGE value="refactoring the directory layout, so it's now organized by functional area.  also started on performance concerns" />
     <MESSAGE value="some cleanups" />
-    <option name="LAST_COMMIT_MESSAGE" value="some cleanups" />
+    <MESSAGE value="pagination for shows works" />
+    <option name="LAST_COMMIT_MESSAGE" value="pagination for shows works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2071,16 +2068,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3090">
-          <caret line="136" column="22" selection-start-line="136" selection-start-column="22" selection-end-line="136" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
@@ -2107,9 +2094,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/concert/concerts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47244096" vertical-offset="0" max-vertical-offset="1320">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1320">
           <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/springjam/util/GratefulDeadDownloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.54330707" vertical-offset="2430" max-vertical-offset="3090">
+          <caret line="139" column="43" selection-start-line="139" selection-start-column="43" selection-end-line="139" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

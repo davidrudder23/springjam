@@ -29,6 +29,16 @@ public class PerformanceResource {
         return performances;
 
     }
+    
+    
+    @RequestMapping(value = "/{id}")
+    @ResponseBody
+    Performance performance(@PathVariable Long id) {
+    	Performance performance = performanceRepository.findOne(id);
+
+        return performance;
+
+    }
 
     @RequestMapping(value = "/concert/{concert}")
     @ResponseBody

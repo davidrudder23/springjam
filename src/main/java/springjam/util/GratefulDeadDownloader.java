@@ -42,7 +42,7 @@ public class GratefulDeadDownloader {
     }
 
     private Optional<Date> getDateFromFilename(String filename) {
-        SimpleDateFormat sdf = new SimpleDateFormat("mm-dd-yy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yy");
         if (filename.endsWith(".txt")) {
             filename = filename.replaceAll(".txt", "");
             logger.info("filename without extension="+filename);

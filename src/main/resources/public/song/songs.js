@@ -36,7 +36,7 @@ function Songs($scope, $http, $rootScope) {
         $http.get("/api/song/"+id).
             success(function(data) {
                 $scope.song = data;
-                $http.get("/api/performance/"+id).
+                $http.get("/api/performance/song/"+id).
                     success(function(data) {
                         $scope.song.performances = data;
                         angular.forEach($scope.song.performances, function (performance, idx) {

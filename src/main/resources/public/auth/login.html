@@ -1,0 +1,52 @@
+<!doctype html>
+<html ng-app ng-controller="Login">
+<head>
+    <title>SpringJam Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="/auth/login.js"></script>
+    <script src="/common/header.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/common/main.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+<div ng-include="'/common/header.html'" ng-controller="Header"></div>
+
+<div class="container">
+
+    <div class="card card-container">
+        <p>
+            Login to SpringJam to track your shows!
+        </p>
+
+        <div id="login-failed-msg" style="display: none" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Login Failed</span>
+            Login Failed
+        </div>
+
+        <input type="text" name="email" id="email" ng-model="email" placeholder="email"><br/>
+        <input type="password" name="password" id="password" ng-model="password" placeholder="password"><br/>
+        <br/>
+        <button name="login-button" ng-click="login()" type="button">Login</button>
+    </div>
+
+    <div class="card card-container">
+        <p>
+            Don't have an account?  Register now!
+        </p>
+
+        <input type="text" id="email" name="email" ng-model="user.email" placeholder="email"></li><br/>
+        <input type="password" id="password" name="password" ng-model="user.password" placeholder="password"></li><br/>
+        <br/>
+        <button type="submit" ng-click="register()">Register</button></li>
+    </div>
+</div>
+</body>
+</html>
